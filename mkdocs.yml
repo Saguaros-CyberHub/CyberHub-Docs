@@ -2,9 +2,12 @@ site_name: CyberHub Documentation
 site_description: Documentation for the CyberHub, a platform for collaborative data science and research.
 site_url: https://docs.saguaroscyberhub.org
 
-repo_url: https://saguaros-cyberhub.github.io/CyberHub-Docs/
-edit_uri: edit/master/docs/docs
+repo_url: https://github.com/Saguaros-CyberHub/CyberHub-Docs
+edit_uri: edit/main/docs
 
 ### Build settings ###
 
 theme: readthedocs
+
+markdown_extensions:
+  - admonition

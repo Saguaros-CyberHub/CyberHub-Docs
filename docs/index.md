@@ -1,17 +1,28 @@
-# Welcome to MkDocs
+# CyberHub Documentation
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+CyberHub is a platform for collaborative data science and research.
 
-## Commands
+!!! note "Work in progress"
+    These docs are just getting started. Sections below will fill out as the
+    platform stabilizes.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Getting started
 
-## Project layout
+- [How to install](Installation/how_to_install.md) — set up CyberHub locally.
+- [Hello World](hello_world.md) — a first look at running things.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## About this site
+
+This documentation is built with [MkDocs](https://www.mkdocs.org) and published
+to <https://docs.saguaroscyberhub.org> from the
+[CyberHub-Docs](https://github.com/Saguaros-CyberHub/CyberHub-Docs) repository.
+
+To work on the docs locally:
+
+```bash
+pip install mkdocs
+mkdocs serve
+```
+
+Then open <http://127.0.0.1:8000>. Pages live in `docs/` as Markdown; the site
+structure and settings are in `mkdocs.yml`.
