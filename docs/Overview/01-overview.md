@@ -2,22 +2,21 @@
 
 ## What CyberCore is
 
-CyberCore is the **control plane** for CyberHub, a cyber-education platform run
-by Cyber Saguaros. It is a single Node.js/Express application that:
+CyberCore is the control and orchestration plane for the CyberHub. It is a single Node.js/Express application that:
 
-1. **Serves the hub** — one web UI where users log in and reach every module
+1. **Serves the hub** – one web UI where users log in and reach every module
    (The Crucible, CyberLabs, The Forge, Saguaros University, and so on).
-2. **Orchestrates infrastructure** — it talks directly to a **Proxmox VE**
+2. **Orchestrates infrastructure** – it talks directly to a Proxmox VE
    cluster to clone VMs, carves per-user isolated networks out of Proxmox
-   **SDN (VXLAN)**, and wires up remote access through **Apache Guacamole** and
-   optionally **Tailscale**.
-3. **Is the system of record** — a PostgreSQL database tracks users, groups,
+   **SDN (VXLAN)**, and wires up remote access through Apache Guacamole and
+   optionally Tailscale.
+3. **Is the system of record** – a PostgreSQL database tracks users, groups,
    modules, resources, allocations, badges, VM templates/instances, events, and
-   the per-user lab environments called **lanes**.
+   the per-user lab environments called lanes.
 
 The whole thing runs as a small Docker Compose stack. There is no microservice
-fleet and no message bus — CyberCore is a **modular monolith**: one Express
-process that discovers feature **modules** and **plugins** from the filesystem
+fleet and no message bus. The CyberCore is a modular monolith: one Express
+process that discovers feature modules and plugins from the filesystem
 at boot and mounts their routes.
 
 > **Note on older docs.** Earlier drafts described an n8n-driven control plane
@@ -28,7 +27,7 @@ at boot and mounts their routes.
 
 ## The one concept to understand first: the *lane*
 
-Almost everything in CyberCore exists to create, manage, and tear down **lanes**.
+Almost everything in CyberCore exists to create, manage, and tear down lanes.
 
 A **lane** is one user's private slice of the range: an isolated VXLAN network
 plus the VMs attached to it (a gateway, a Kali workstation, and whatever

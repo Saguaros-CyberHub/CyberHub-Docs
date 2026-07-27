@@ -1,6 +1,6 @@
 # CyberCore Documentation
 
-CyberCore is the control-plane application for the **CyberHub** — a cyber-education
+CyberCore is the control-plane application for the CyberHub, a cyber-education
 platform that provisions isolated, per-user lab environments ("lanes") on a
 Proxmox cluster and presents them through a single web hub.
 
@@ -23,7 +23,7 @@ Start at the top and work down. The first three are the foundation; the rest are
 
 | # | Doc | What it covers |
 |---|-----|----------------|
-| 01 | [Overview](Overview/01-overview.md) | What CyberCore is, the glossary, and the top-level system diagram. **Start here.** |
+| 01 | [Overview](Overview/01-overview.md) | What the CyberCore is, the glossary, and the top-level system diagram. **Start here.** |
 | 02 | [Architecture](Overview/02-architecture.md) | Components, the boot sequence, and the request lifecycle. |
 | 03 | [Data Model](Overview/03-data-model.md) | The databases, the entity-relationship map, and a key-table reference. |
 | 04 | [Modules & Plugins](Overview/04-modules-and-plugins.md) | The manifest-driven loader and how to add a module or plugin. |
@@ -34,14 +34,14 @@ Start at the top and work down. The first three are the foundation; the rest are
 | 09 | [Deployment & Ops](Overview/09-deployment-and-ops.md) | The Docker Compose stack, environment variables, and offline mode. |
 | 10 | [Plugins: CiaB & CLE](Overview/10-plugins.md) | The two shipped plugins and what they add. |
 
-Also: [offline-mode.md](Overview/11-offline-mode.md) — running CyberHub on a LAN or air-gapped machine without public HTTPS.
+Also: [offline-mode.md](Overview/11-offline-mode.md) – running the CyberHub on a LAN or air-gapped machine without public HTTPS.
 
 ## Conventions used in these docs
 
 - **Code references** are relative paths, e.g. [src/server.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js).
 - **Tables** are named with their database prefix (`cybercore_*` live in the
   main database; `clinic_*`/`cle_*` live in their plugin databases).
-- Diagrams are [Mermaid](https://mermaid.js.org/) fenced code blocks so they
+- **Diagrams** are [Mermaid](https://mermaid.js.org/) fenced code blocks so they
   render on GitHub and in most Markdown viewers.
 
 ## About this site
