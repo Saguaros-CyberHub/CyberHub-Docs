@@ -5,7 +5,7 @@ reach for.
 
 ## The Docker Compose stack
 
-Everything runs from [docker-compose.yml](../docker-compose.yml) as a single
+Everything runs from [docker-compose.yml](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/docker-compose.yml) as a single
 stack on the "orchestrator VM." The app is the only custom image; the rest are
 stock.
 
@@ -65,11 +65,11 @@ Key facts:
 
 Config comes from three places:
 
-1. **`.env`** (from [example.env](../example.env)) — secrets and host-specific
+1. **`.env`** (from [example.env](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/example.env)) — secrets and host-specific
    values, injected into the compose stack.
-2. **[config/site.json](../config/site.json)** — cluster/site topology
+2. **`config/site.json`** (from [config/example-site.json](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/config/example-site.json)) — cluster/site topology
    (Proxmox nodes, network plans, scheduling limits), read via
-   [utils/site-config.js](../front-end/src/utils/site-config.js) and mounted
+   [utils/site-config.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/site-config.js) and mounted
    read-only into the container.
 3. **Env passed through in `docker-compose.yml`** — the `app` service maps `.env`
    values onto the specific variable names the code expects.
@@ -90,7 +90,7 @@ Config comes from three places:
 | `PROXMOX_API_URL` / `PROXMOX_TOKEN_ID` / `PROXMOX_TOKEN_SECRET` | Proxmox API access for provisioning. |
 | `TAILSCALE_OAUTH_CLIENT_ID` / `_SECRET` / `TAILSCALE_TAILNET` / `TAILSCALE_LANE_TAG` | Tailscale BYOAB for v2/v3 lanes. |
 | `CYBERCORE_INTERNAL_URL` | Internal URL lane web VMs pull vuln-app images from. |
-| `ANTHROPIC_API_KEY` / `LLM_DEFAULT_MODEL` / `LLM_MAX_CONCURRENT` | AI generation used by the CiaB plugin ([utils/llm-client.js](../front-end/src/utils/llm-client.js)). |
+| `ANTHROPIC_API_KEY` / `LLM_DEFAULT_MODEL` / `LLM_MAX_CONCURRENT` | AI generation used by the CiaB plugin ([utils/llm-client.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/llm-client.js)). |
 | `RATE_LIMIT_MAX_REQUESTS` / `RATE_LIMIT_WINDOW_MS` | General rate-limit tuning. |
 | `TRUST_PROXY` | Proxy CIDRs Express trusts for real client IP (defaults cover Docker bridges). |
 
@@ -125,7 +125,7 @@ Three mechanisms, described fully in [03-data-model.md](03-data-model.md):
 ## Logging
 
 The app replaces `console.*` with a structured logger
-([utils/logger.js](../front-end/src/utils/logger.js)) at the very top of
+([utils/logger.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/logger.js)) at the very top of
 `server.js`, so all output — including module-load lines — is tagged and leveled.
 
 - Level via `LOG_LEVEL` (`info` default; `debug` for verbose).
@@ -133,9 +133,9 @@ The app replaces `console.*` with a structured logger
 - Log lines derive their tag from a `[TAG]` prefix convention, so grep by
   subsystem (`[Deploy]`, `[PluginLoader]`, `[RATE LIMIT]`, …).
 
-Request logging ([middleware/request-logger.js](../front-end/src/middleware/request-logger.js))
+Request logging ([middleware/request-logger.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/middleware/request-logger.js))
 runs before all routes; activity logging
-([middleware/activity-logger.js](../front-end/src/middleware/activity-logger.js))
+([middleware/activity-logger.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/middleware/activity-logger.js))
 records auditable admin actions (e.g. lane deploys).
 
 ## Operational gotchas

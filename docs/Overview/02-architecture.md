@@ -5,7 +5,7 @@ the process boots, and the path a request takes through it.
 
 ## Components
 
-CyberCore is a **modular monolith**. One Express process ([front-end/src/server.js](../front-end/src/server.js))
+CyberCore is a **modular monolith**. One Express process ([front-end/src/server.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js))
 hosts everything; features are composed in from the filesystem at boot.
 
 ```mermaid
@@ -56,13 +56,13 @@ flowchart LR
 - **Middleware chain** — cross-cutting concerns applied to every request
   (logging, security headers, CORS, rate limiting, body parsing, sessions).
   Order matters; see the request lifecycle below.
-- **Core routes** ([src/routes/](../front-end/src/routes/)) — auth, admin,
+- **Core routes** ([src/routes/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/routes/)) — auth, admin,
   lab templates, modules, workstations, lane bootstrap, and Guacamole sessions.
   Wired explicitly in `server.js`.
-- **Module & plugin routes** ([src/module-loader.js](../front-end/src/module-loader.js))
+- **Module & plugin routes** ([src/module-loader.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/module-loader.js))
   — discovered and mounted at boot from `manifest.json` files. Covered in
   [04-modules-and-plugins.md](04-modules-and-plugins.md).
-- **Orchestration utils** ([src/utils/](../front-end/src/utils/)) — the code
+- **Orchestration utils** ([src/utils/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/utils/)) — the code
   that actually drives infrastructure. Each has a single responsibility (talk to
   Proxmox, carve SDN networks, mint Tailscale keys, register Guacamole
   connections, pick a node, deploy lanes in batches).
@@ -115,7 +115,7 @@ A few boot behaviors worth knowing:
 - **Secrets are self-healing but ephemeral.** If `JWT_SECRET` / `SESSION_SECRET`
   are unset, the server generates random ones and logs a warning — usable for
   dev, but every restart invalidates all tokens/sessions. Always set them in
-  production. ([server.js:94](../front-end/src/server.js#L94))
+  production. ([server.js:94](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L94))
 - **Idempotent schema top-ups.** `config/postgres/*` init scripts only run on a
   *fresh* database volume, so `server.js` re-ensures a few things at every boot
   (`settings` table, MFA columns) via `IF NOT EXISTS` / `ADD COLUMN IF NOT
@@ -161,7 +161,7 @@ flowchart TB
 
 ### Rate limiting, specifically
 
-There are three separate limiters ([server.js:201](../front-end/src/server.js#L201)):
+There are three separate limiters ([server.js:201](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L201)):
 
 | Limiter | Scope | Cap | Key |
 |---------|-------|-----|-----|

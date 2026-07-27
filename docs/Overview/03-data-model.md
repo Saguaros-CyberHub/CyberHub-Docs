@@ -12,25 +12,25 @@ can't accidentally reach into the control plane's tables.
 
 | Database | Default name | Pool / accessor | Owned by | Holds |
 |----------|-------------|-----------------|----------|-------|
-| **CyberCore** | `cybercore_db` | [cybercore-db.js](../front-end/src/utils/cybercore-db.js) → `cybercoreQuery()` | control plane | Users, groups, modules, resources, allocations, badges, VM templates/instances, events, **lanes**, challenges. The system of record. |
-| **Clinic** | `clinic_db` | [db.js](../front-end/src/utils/db.js) → `query()` | **CiaB** plugin | Risk-assessment profiles, intakes, generated documents, findings. See [10-plugins.md](10-plugins.md). |
+| **CyberCore** | `cybercore_db` | [cybercore-db.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/cybercore-db.js) → `cybercoreQuery()` | control plane | Users, groups, modules, resources, allocations, badges, VM templates/instances, events, **lanes**, challenges. The system of record. |
+| **Clinic** | `clinic_db` | [db.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/db.js) → `query()` | **CiaB** plugin | Risk-assessment profiles, intakes, generated documents, findings. See [10-plugins.md](10-plugins.md). |
 | **CLE** | `cle_db` | plugin-injected pool | **CLE** plugin | Courses, enrollments, materials, submissions. |
-| **Guacamole** | `guacamole_db` | Guacamole itself + [guacamole-db.js](../front-end/src/utils/guacamole-db.js) | Guacamole | Connection definitions and its own users. Managed by the Guacamole containers. |
-| **Redis** | — | [redis.js](../front-end/src/utils/redis.js) | control plane | Session store (`connect-redis`) and short-lived caches. |
+| **Guacamole** | `guacamole_db` | Guacamole itself + [guacamole-db.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/guacamole-db.js) | Guacamole | Connection definitions and its own users. Managed by the Guacamole containers. |
+| **Redis** | — | [redis.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/redis.js) | control plane | Session store (`connect-redis`) and short-lived caches. |
 
 ### Where the schema comes from
 
 Three different mechanisms create/maintain schema — know which is which:
 
 1. **First-boot init — `config/postgres/`.** Scripts like
-   [001_init_db.sql](../config/postgres/001_init_db.sql) and
-   [modules/crucible.sql](../config/postgres/modules/crucible.sql) run **once**,
+   [001_init_db.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/config/postgres/001_init_db.sql) and
+   [modules/crucible.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/config/postgres/modules/crucible.sql) run **once**,
    the first time the Postgres container initializes an empty data volume. This
    is the authoritative starting schema for `cybercore_db`. Re-running requires
    a fresh volume.
 2. **Incremental migrations — `front-end/migrations/`.** Numbered `.sql` files
-   (e.g. [007_cybercore_tables.sql](../front-end/migrations/007_cybercore_tables.sql),
-   [021_subnet_scheme_v3.sql](../front-end/migrations/021_subnet_scheme_v3.sql))
+   (e.g. [007_cybercore_tables.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/migrations/007_cybercore_tables.sql),
+   [021_subnet_scheme_v3.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/migrations/021_subnet_scheme_v3.sql))
    that evolve `cybercore_db` after init. **There is no automatic runner** — an
    operator applies them with `psql`. Most are written idempotently
    (`IF NOT EXISTS`).
@@ -112,7 +112,7 @@ erDiagram
 |-------|---------|-----------------|
 | `cybercore_module` | Registry of modules and plugins (upserted by the loader). | `key` (PK), `category` (`module`/`plugin`), `parent_module`, `entry_url`, `active`, `display_order` |
 | `cybercore_template_catalog` | All Proxmox VM templates the orchestrator can clone. | `template_vmid`, `node` (reconciled at boot), `template_type` (`os_template`/`workstation`/`lane_networking`/`challenge`), `os_family`, `os_version` |
-| `vuln_scripts` | Library of vulnerability-injection scripts run on deployed VMs. | script body/metadata; resolved by [vuln-script-resolver.js](../front-end/src/utils/vuln-script-resolver.js) |
+| `vuln_scripts` | Library of vulnerability-injection scripts run on deployed VMs. | script body/metadata; resolved by [vuln-script-resolver.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/vuln-script-resolver.js) |
 
 ### Resources & instances
 
@@ -146,7 +146,7 @@ erDiagram
 > `forge_project`, `forge_artifact`, `university_course`, `university_enrollment`)
 > exist as scaffolding for their respective modules. Most of those modules ship
 > as placeholder UIs today (see the `placeholderModules` list in
-> [server.js](../front-end/src/server.js)), so treat these tables as reserved
+> [server.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js)), so treat these tables as reserved
 > until the module is built out.
 
 ## Plugin databases (summary)

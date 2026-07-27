@@ -9,7 +9,7 @@ the three **subnet schemes**, the lane **gateway**, remote access via
 CyberCore uses **Proxmox SDN** to give each lane its own layer-2 segment. A lane
 is assigned a `vxlan_id`; a Proxmox SDN **VNet** tagged with that ID provides an
 isolated bridge that materializes on the cluster nodes. VNets are **pre-created**
-in bulk (see [lab-network-provision.js](../front-end/src/utils/lab-network-provision.js)),
+in bulk (see [lab-network-provision.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/lab-network-provision.js)),
 so deploying a lane is a fast "find the VNet with my tag and attach VMs to it"
 rather than a slow SDN apply on the critical path. Because the SDN apply is
 asynchronous, the provisioning helper **polls until the VNet bridge appears** on
@@ -19,7 +19,7 @@ the nodes before a lane deploy relies on it.
 
 The `subnet_scheme` column on `crucible_challenge` selects the network topology a
 lane uses. It picks which **gateway template** to clone and how addresses are
-laid out. Logic lives in [lane-networking.js](../front-end/src/utils/lane-networking.js).
+laid out. Logic lives in [lane-networking.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/lane-networking.js).
 
 | | **v1** (legacy) | **v2** (default for new) | **v3** (segmented) |
 |---|---|---|---|
@@ -74,13 +74,13 @@ Whatever the scheme, the gateway LXC is the lane's router and services box:
 - **Routing & NAT** between the lane subnet(s) and the WAN.
 - **DHCP** (dnsmasq) for lane VMs, including reservations for attached modules
   and deterministic GOAD IPs (DC01 = `.10`, etc., via
-  [goad-deploy.js](../front-end/src/utils/goad-deploy.js)).
+  [goad-deploy.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/goad-deploy.js)).
 - **Firewall**, including the inter-segment block on v3.
 - **Tailscale** join on v2/v3, using the one-shot key it pulls at first boot.
 
 Its VMID is always `100000 + vxlan_id`. It's cloned from a pre-baked template
 built by one of the `bake-lane-gateway-*.sh` scripts in
-[front-end/scripts/](../front-end/scripts/).
+[front-end/scripts/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/scripts/).
 
 ## Remote access: Tailscale (BYOAB)
 
@@ -103,7 +103,7 @@ sequenceDiagram
   Note over GW,TS: gateway (and its subnet routes) now on the tailnet
 ```
 
-Setup and teardown live in [tailscale.js](../front-end/src/utils/tailscale.js):
+Setup and teardown live in [tailscale.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/tailscale.js):
 per-lane keys are minted from a Tailscale OAuth client (scopes: Auth Keys write,
 Devices write) and the device is **deleted on lane teardown**. v1 lanes ignore
 this module entirely.
@@ -124,7 +124,7 @@ flowchart LR
   GUACWEB --> VM["Lane VM (RDP/VNC/SSH)"]
 ```
 
-- [guac-sessions.js](../front-end/src/routes/guac-sessions.js) exposes
+- [guac-sessions.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/guac-sessions.js) exposes
   `GET /api/dashboard/vms` (the caller's authorized VMs) and
   `POST /api/dashboard/vms/:vmId/guac-session` (returns a short, safe iframe URL
   after checking authorization).
@@ -134,8 +134,8 @@ flowchart LR
   Guacamole API name lookup).
 - The Content-Security-Policy `frame-src` is widened at boot to allow the
   Guacamole origin when `GUAC_PUBLIC_BASE_URL` is a full URL; a same-origin
-  `/guac` proxy path needs no CSP change ([server.js:128](../front-end/src/server.js#L128)).
-- [guacamole.js](../front-end/src/utils/guacamole.js) wraps the Guacamole API
+  `/guac` proxy path needs no CSP change ([server.js:128](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L128)).
+- [guacamole.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/guacamole.js) wraps the Guacamole API
   (token caching, connection CRUD).
 
 Continue to **[07 · Crucible & Challenges](07-crucible-challenges.md)**.

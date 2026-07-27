@@ -12,7 +12,7 @@ For how plugins are loaded in general, see
 
 ## CiaB — Clinic-in-a-Box
 
-> [modules/crucible/plugins/ciab/](../front-end/modules/crucible/plugins/ciab/)
+> [modules/crucible/plugins/ciab/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/)
 > · database `clinic_db` · mount `/ciab` · API under `/`
 
 **What it is:** an AI-powered **cyber risk-assessment training** platform. It's
@@ -39,11 +39,11 @@ profile.
 
 ### How it connects to the core platform
 
-- **AI generation** runs through [utils/llm-client.js](../front-end/src/utils/llm-client.js)
+- **AI generation** runs through [utils/llm-client.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/llm-client.js)
   (Anthropic) — profiles, policies, examples, interview, and vuln-app synthesis.
   Historically some flows also used the external **n8n** workflows in
-  [config/n8n/workflows/](../config/n8n/workflows/); those are optional.
-- **Vuln-app builder** ([utils/vuln-app-builder.js](../front-end/modules/crucible/plugins/ciab/utils/)):
+  `config/n8n/workflows/`; those are optional.
+- **Vuln-app builder** ([utils/vuln-app-builder.js](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/utils/)):
   builds per-profile vulnerable web apps as container images (this is why the app
   container mounts the Docker socket — see [09](09-deployment-and-ops.md)).
 - **Lane deploy** reads/writes `crucible_challenge` and drives the same Proxmox
@@ -64,7 +64,7 @@ plugin uses.
 
 ## CLE — Cyber Learning Environment
 
-> [modules/crucible/plugins/cle/](../front-end/modules/crucible/plugins/cle/)
+> [modules/crucible/plugins/cle/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/cle/)
 > · database `cle_db` · mount `/cle` · API under `/`
 
 **What it is:** **instructor tooling** for managing classes — the LMS-lite layer
@@ -89,7 +89,7 @@ for its roster.
 ### Access control — important
 
 CLE course-scoped routes must gate on the **shared, admin-aware** access helper
-([utils/course-access.js](../front-end/modules/crucible/plugins/cle/utils/course-access.js),
+([utils/course-access.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/plugins/cle/utils/course-access.js),
 `canManageCourse`/`getManagedCourse`) — **not** a raw `instructor_id` comparison.
 An admin needs to manage any course, and an instructor only their own; the helper
 enforces both. This is a known correctness requirement — see the pattern before
@@ -114,6 +114,6 @@ adding new course routes.
 
 ---
 
-That completes the documentation set. Back to the [index](README.md). If you
+That completes the documentation set. Back to the [index](../index.md). If you
 change how any subsystem works, update the matching doc in the same PR — these
 files are only useful if they stay honest.

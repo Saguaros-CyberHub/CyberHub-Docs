@@ -10,13 +10,13 @@ CyberCore uses **JWTs** as the primary credential, with an **express-session**
 (Redis-backed) layer for server-side session state.
 
 - A JWT is accepted from **either** the `Authorization: Bearer <token>` header
-  **or** a `token` cookie ([middleware/auth.js](../front-end/src/middleware/auth.js)).
+  **or** a `token` cookie ([middleware/auth.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/middleware/auth.js)).
   The header wins if both are present.
 - The token payload carries `sub` (user id), `email`, and `role`. On verify,
   those become `req.user = { userId, email, role }`.
 - `JWT_SECRET` signs and verifies tokens. If it's unset the server generates a
   random one at boot and **all tokens invalidate on restart** — always set it in
-  production ([server.js:94](../front-end/src/server.js#L94)).
+  production ([server.js:94](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L94)).
 - Sessions are stored in Redis via `connect-redis`; the cookie is `httpOnly`,
   `sameSite=lax`, and `secure` when `COOKIE_SECURE=true` (set this behind HTTPS).
 
@@ -69,7 +69,7 @@ sequenceDiagram
 
 Enrollment (`/mfa/setup` → `/mfa/verify`) issues a QR/secret and confirms the
 first code before enabling. `/mfa/disable` requires a full session. Relevant
-routes: [auth.js](../front-end/src/routes/auth.js) (`/login`, `/login/mfa`,
+routes: [auth.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/auth.js) (`/login`, `/login/mfa`,
 `/mfa/setup`, `/mfa/verify`, `/mfa/disable`).
 
 ### MFA secret storage
@@ -77,7 +77,7 @@ routes: [auth.js](../front-end/src/routes/auth.js) (`/login`, `/login/mfa`,
 TOTP secrets and recovery codes live on `cybercore_user` (`mfa_secret` BYTEA,
 `mfa_recovery_codes` JSONB), encrypted at rest with **pgcrypto** keyed by
 `MFA_ENCRYPT_KEY` (falls back to `GUAC_ENCRYPT_KEY`). Helpers are in
-[utils/mfa.js](../front-end/src/utils/mfa.js). The columns are ensured
+[utils/mfa.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/mfa.js). The columns are ensured
 idempotently at boot (`ensureMfaColumns()` in `server.js`).
 
 ## Rate limiting
@@ -101,11 +101,11 @@ into the proxy's single IP bucket. It also underpins the safe use of
 
 Vulnerable-lab VMs sometimes need to pull payloads from the orchestrator. Those
 downloads are served from `/vuln-assets/` and gated by **short-lived HMAC-signed
-URLs** ([utils/signed-url.js](../front-end/src/utils/signed-url.js)):
+URLs** ([utils/signed-url.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/signed-url.js)):
 
 - The orchestrator mints `?token=<hmac>&exp=<ts>` for a filename; the static
   handler verifies the signature and expiry before serving
-  ([server.js:311](../front-end/src/server.js#L311)).
+  ([server.js:311](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L311)).
 - Keyed by `VULN_ASSETS_SECRET`. In production the app refuses to sign with the
   dev fallback — set it (`openssl rand -hex 32`).
 
@@ -115,13 +115,13 @@ The one unauthenticated endpoint, `GET /api/lane-bootstrap`, is gated by
 **source IP + one-shot token + hostname secret** rather than a bearer token,
 because a freshly-cloned gateway has no credentials yet. The full rationale is in
 [05-lanes-and-provisioning.md](05-lanes-and-provisioning.md) and the header of
-[lane-bootstrap.js](../front-end/src/routes/lane-bootstrap.js). Key point: the
+[lane-bootstrap.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/lane-bootstrap.js). Key point: the
 source-IP check is only trustworthy *because* `trust proxy` makes Express drop
 forged `X-Forwarded-For` from untrusted hops.
 
 ## Content-Security-Policy & headers
 
-`helmet` sets security headers with a tuned CSP ([server.js:142](../front-end/src/server.js#L142)):
+`helmet` sets security headers with a tuned CSP ([server.js:142](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L142)):
 
 - `default-src 'self'`; scripts/styles allow `'unsafe-inline'` (and scripts
   `'unsafe-eval'`) — a pragmatic concession to the inline-heavy hub pages.

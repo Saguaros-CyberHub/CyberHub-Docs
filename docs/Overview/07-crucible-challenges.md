@@ -26,7 +26,7 @@ tracked separately.
 
 ## The dashboard model
 
-The Crucible dashboard ([modules/crucible/public/pages/dashboard.html](../front-end/modules/crucible/public/pages/dashboard.html))
+The Crucible dashboard ([modules/crucible/public/pages/dashboard.html](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/public/pages/dashboard.html))
 has a left-hand "Challenge Types" nav. Each tab is sourced from **one** of the
 two tables:
 
@@ -68,10 +68,10 @@ The three **challenge-backed** tabs map to `challenge_type` values:
 
 Everything else reads `cybercore_event`. The mapping is the `CHALLENGE_TABS`
 object in the dashboard; the API is
-[modules/crucible/routes/challenges.js](../front-end/modules/crucible/routes/challenges.js)
+[modules/crucible/routes/challenges.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/routes/challenges.js)
 (`GET /api/crucible/challenges?type=…`, scoped to `module_key='crucible'` and,
 for non-admins, `status='active'`). Events are served by
-[routes/events.js](../front-end/modules/crucible/routes/events.js).
+[routes/events.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/routes/events.js).
 
 > Because `koth` and `red_vs_blue` challenges may not be seeded yet, those tabs
 > show an empty state until challenges of those types exist. That's expected —
@@ -134,19 +134,19 @@ flowchart LR
 
 The full worked example — including the deliberately-vulnerable app, the seed
 migration, and the bake script — is the CyberSaguaros challenge in
-[challenges/cybersaguaros-ssrf/](../challenges/cybersaguaros-ssrf/) and its
-[README](../challenges/cybersaguaros-ssrf/README.md).
+[challenges/cybersaguaros-ssrf/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/challenges/cybersaguaros-ssrf/) and its
+[README](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/challenges/cybersaguaros-ssrf/README.md).
 
 ## Adding a challenge (checklist)
 
 1. **Build the VM template** on Proxmox (there's often a `bake-*.sh` script in
-   [front-end/scripts/](../front-end/scripts/)) and note its VMID.
+   [front-end/scripts/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/scripts/)) and note its VMID.
 2. **Register it in the catalog** — add a `cybercore_template_catalog` row (or
    let a bake script do it) so node reconciliation and resolvers can find it.
 3. **Seed the `crucible_challenge` row** via a migration — set
    `challenge_key`, `challenge_type`, `difficulty`, `subnet_scheme`, `module_key`,
    `spec`, and `status='active'`. See
-   [020_seed_cybersaguaros_module.sql](../front-end/migrations/020_seed_cybersaguaros_module.sql)
+   [020_seed_cybersaguaros_module.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/migrations/020_seed_cybersaguaros_module.sql)
    for a template.
 4. **Verify it surfaces.** A `single_vm`/`multi_vm` challenge appears under
    Vulnerable Boxes automatically; attachable ones show in the admin lane

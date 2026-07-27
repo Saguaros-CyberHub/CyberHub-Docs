@@ -23,7 +23,7 @@ at boot and mounts their routes.
 > **Note on older docs.** Earlier drafts described an n8n-driven control plane
 > with OPNsense/Ceph/Moodle providers. That is not how the system works today.
 > n8n survives only as a set of *optional external workflows* used by the CiaB
-> plugin for document generation ([config/n8n/workflows/](../config/n8n/workflows/));
+> plugin for document generation (`config/n8n/workflows/`);
 > the core provisioning path is the Express app calling Proxmox directly.
 
 ## The one concept to understand first: the *lane*
@@ -105,15 +105,15 @@ flowchart TB
 
 | Path | What lives there |
 |------|------------------|
-| [front-end/](../front-end/) | The Express control-plane app — this is CyberCore. |
-| [front-end/src/](../front-end/src/) | Server, loaders, routes, middleware, and orchestration utils. |
-| [front-end/modules/](../front-end/modules/) | Feature modules and their nested plugins. |
-| [front-end/migrations/](../front-end/migrations/) | Schema migrations applied to the main database. |
-| [config/postgres/](../config/postgres/) | First-boot database init scripts (run once on a fresh volume). |
-| [config/](../config/) | Caddy, Guacamole, n8n, and site configuration. |
-| [challenges/](../challenges/) | Source for self-contained vulnerable-app challenges (e.g. CyberSaguaros). |
-| [docker-compose.yml](../docker-compose.yml) | The deployment stack. |
-| [docs/](.) | You are here. |
+| [front-end/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/) | The Express control-plane app — this is CyberCore. |
+| [front-end/src/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/) | Server, loaders, routes, middleware, and orchestration utils. |
+| [front-end/modules/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/) | Feature modules and their nested plugins. |
+| [front-end/migrations/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/migrations/) | Schema migrations applied to the main database. |
+| [config/postgres/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/config/postgres/) | First-boot database init scripts (run once on a fresh volume). |
+| [config/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/config/) | Caddy, Guacamole, n8n, and site configuration. |
+| [challenges/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/challenges/) | Source for self-contained vulnerable-app challenges (e.g. CyberSaguaros). |
+| [docker-compose.yml](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/docker-compose.yml) | The deployment stack. |
+| [docs/](../index.md) | You are here. |
 
 Continue to **[02 · Architecture](02-architecture.md)** for how these pieces
 fit together at runtime.

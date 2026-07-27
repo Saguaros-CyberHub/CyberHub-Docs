@@ -22,7 +22,7 @@ share the same manifest shape — a plugin is really just a module with a
 `parent_module` and (usually) its own database.
 
 > **Heads-up — one loader is live, one is dormant.**
-> [src/module-loader.js](../front-end/src/module-loader.js) is the real loader;
+> [src/module-loader.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/module-loader.js) is the real loader;
 > `server.js` calls `moduleLoader.loadAll(app)`. There is a second file,
 > `src/plugin-loader.js`, that scans a top-level `plugins/` directory for
 > `plugin.json` files — `server.js` **never requires or invokes it**, so it does
@@ -114,7 +114,7 @@ flowchart TB
 ```
 
 Concretely, for every module the loader
-([module-loader.js](../front-end/src/module-loader.js)):
+([module-loader.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/module-loader.js)):
 
 1. Parses `manifest.json` (skips the dir with a warning if absent).
 2. If `database` is declared, provisions it and runs migrations.
@@ -183,7 +183,7 @@ Same steps, but the directory goes under a module
 (`modules/crucible/plugins/cyberprobe/`), the manifest sets
 `"category": "plugin"` and `"parent_module": "crucible"`, and if it needs
 storage you add a `database` block plus a `utils/db.js` that exposes
-`setPool()`. Model it on [the CiaB plugin](../front-end/modules/crucible/plugins/ciab/)
+`setPool()`. Model it on [the CiaB plugin](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/)
 (see [10-plugins.md](10-plugins.md)).
 
 ## Conventions worth following

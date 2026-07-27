@@ -27,7 +27,7 @@ stateDiagram-v2
 Two details that matter operationally:
 
 - **One active lane per user.** Deploy refuses if the user already has a lane in
-  `active`, `deploying`, or `pending` ([lanes.js:65](../front-end/src/routes/admin/lanes.js#L65)).
+  `active`, `deploying`, or `pending` ([lanes.js:65](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/admin/lanes.js#L65)).
 - **VXLAN IDs are recycled.** The unique index on `vxlan_id` only applies to
   non-`error`/`deleted` lanes, so a failed deploy releases its VXLAN for reuse
   on retry (see [03-data-model.md](03-data-model.md)).
@@ -65,7 +65,7 @@ range, no two lanes ever compute the same VMID.
 
 ## The deploy sequence
 
-`POST /api/admin/deploy-lane` ([lanes.js:41](../front-end/src/routes/admin/lanes.js#L41))
+`POST /api/admin/deploy-lane` ([lanes.js:41](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/admin/lanes.js#L41))
 is the single-lane entry point. It responds *immediately* with `status:
 deploying` and continues the actual provisioning in a background async block —
 so the caller polls `GET /api/admin/lanes/:id` for progress rather than blocking
@@ -113,13 +113,13 @@ sequenceDiagram
 4. **Resolve the VNet.** The SDN VNets are **pre-created** per VXLAN (see below),
    so deploy just finds the VNet whose tag equals `vxlan_id`. For v3 it also
    resolves the paired internal VNet (`vxlan_id + offset`).
-5. **Select a node.** [node-selector.js](../front-end/src/utils/node-selector.js)
+5. **Select a node.** [node-selector.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/node-selector.js)
    scores every Proxmox node on free CPU/RAM and returns the best host.
 6. **Insert the lane row** as `deploying` and return to the caller.
 7. **Clone targets** (async). For each VM in `spec.vms` (or a single default
    VM), clone the template to `vm_offset + vxlan_id`, then set its NIC(s) onto
    the lane VNet. GOAD and DMZ roles get special multi-NIC / MAC handling (see
-   [goad-deploy.js](../front-end/src/utils/goad-deploy.js)).
+   [goad-deploy.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/goad-deploy.js)).
 8. **Clone + wire the gateway.** Clone the gateway LXC to `100000 + vxlan_id`,
    embedding a random **bootstrap secret** in its hostname
    (`…-b<16hex>`), and configure its WAN + LAN interfaces per the subnet scheme.
@@ -134,7 +134,7 @@ this by **pulling** its config on first boot from an unauthenticated but gated
 endpoint:
 
 - The gateway calls `GET /api/lane-bootstrap`
-  ([lane-bootstrap.js](../front-end/src/routes/lane-bootstrap.js)).
+  ([lane-bootstrap.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/lane-bootstrap.js)).
 - The request is matched to a `lane_bootstrap_tokens` row by **source IP**
   (the WAN IP the orchestrator deterministically assigned). Express's
   `trust proxy` config ensures `X-Forwarded-For` can't be spoofed by a
@@ -149,7 +149,7 @@ cloned image and out of any long-lived store.
 ## Group deployment (many lanes at once)
 
 Instructors deploy to a whole cohort, not one student. That path fans the
-single-lane logic out through [batch-deployer.js](../front-end/src/utils/batch-deployer.js),
+single-lane logic out through [batch-deployer.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/batch-deployer.js),
 a worker pool that provisions **N lanes concurrently** (bounded by
 `max_concurrent_lanes` / `max_concurrent_clones` from site config) instead of a
 slow sequential loop. Each worker runs the same clone-and-wire sequence above.
@@ -167,7 +167,7 @@ flowchart LR
 Sometimes you want to graft extra VMs onto an **already-running** lane — e.g. the
 instructor adds a DVWA box to every student lane in week 3, then removes it in
 week 4, without disturbing the base lane. That's an **attached module**
-([attached-modules.js](../front-end/src/utils/attached-modules.js)):
+([attached-modules.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/attached-modules.js)):
 
 - Attached VMs sit on the **same VXLAN** as the base lane, reachable from the
   student's Kali at `<lane_subnet>.<octet>`.
@@ -178,7 +178,7 @@ week 4, without disturbing the base lane. That's an **attached module**
 
 API: `POST /api/admin/lanes/:laneId/modules` to attach,
 `DELETE /api/admin/lanes/:laneId/modules/:moduleInstanceId` to detach
-([lanes.js:550](../front-end/src/routes/admin/lanes.js#L550)). This is how the
+([lanes.js:550](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/admin/lanes.js#L550)). This is how the
 CyberSaguaros challenge is delivered — see [07-crucible-challenges.md](07-crucible-challenges.md).
 
 ## Teardown
