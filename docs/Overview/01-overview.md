@@ -1,4 +1,4 @@
-# 01 · Overview
+# 01 – Overview
 
 ## What CyberCore is
 
@@ -8,7 +8,7 @@ CyberCore is the control and orchestration plane for the CyberHub. It is a singl
    (The Crucible, CyberLabs, The Forge, Saguaros University, and so on).
 2. **Orchestrates infrastructure** – it talks directly to a Proxmox VE
    cluster to clone VMs, carves per-user isolated networks out of Proxmox
-   **SDN (VXLAN)**, and wires up remote access through Apache Guacamole and
+   SDN (VXLAN), and wires up remote access through Apache Guacamole and
    optionally Tailscale.
 3. **Is the system of record** – a PostgreSQL database tracks users, groups,
    modules, resources, allocations, badges, VM templates/instances, events, and
@@ -45,13 +45,13 @@ per student, each with its own network and its own copy of the target VMs.
 | **Module** | A top-level feature area discovered from `front-end/modules/<key>/` via a `manifest.json`. Examples: `crucible`, `cyberlabs`, `forge`. Registered in `cybercore_module`. |
 | **Plugin** | A nested feature that lives under a module at `modules/<module>/plugins/<key>/`, with its own manifest and often its own database. The two shipped plugins are **CiaB** and **CLE**, both under `crucible`. |
 | **Lane** | One user's isolated network + VMs. The unit of provisioning. Row in `cybercore_lane`. |
-| **Challenge** | A reusable, deployable scenario definition (row in `crucible_challenge`) — a spec of VMs, network, and difficulty. The catalog of things you *can* deploy. |
+| **Challenge** | A reusable, deployable scenario definition (row in `crucible_challenge`) – a spec of VMs, network, and difficulty. The catalog of things you *can* deploy. |
 | **Event** | A human-run, scheduled happening (a live CTF, a KotH match, a red-vs-blue session). Row in `cybercore_event`. Distinct from a challenge. |
 | **Resource** | A tracked provisioned thing (a VM, network, dataset, VPN account). Row in `cybercore_resource`, with `cybercore_vm_instance` holding VM specifics. |
 | **Allocation** | A link that grants a user or group access to a resource for a purpose and time window. Row in `cybercore_allocation`. |
-| **Subnet scheme (v1/v2/v3)** | The networking topology a lane uses — which gateway VM template and IP plan. See [06-networking.md](06-networking.md). |
+| **Subnet scheme (v1/v2/v3)** | The networking topology a lane uses – which gateway VM template and IP plan. See [06-networking.md](06-networking.md). |
 | **Attachable module/challenge** | A challenge that can be hot-attached into an existing lane (e.g. CyberSaguaros), rather than defining the lane itself. |
-| **Template catalog** | `cybercore_template_catalog` — the registry of Proxmox VM templates (OS images, workstations, lane gateways, single-VM challenges) the orchestrator clones from. |
+| **Template catalog** | `cybercore_template_catalog` – the registry of Proxmox VM templates (OS images, workstations, lane gateways, single-VM challenges) the orchestrator clones from. |
 
 ## Top-level system map
 
@@ -104,7 +104,7 @@ flowchart TB
 
 | Path | What lives there |
 |------|------------------|
-| [front-end/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/) | The Express control-plane app — this is CyberCore. |
+| [front-end/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/) | The Express control-plane app – this is CyberCore. |
 | [front-end/src/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/) | Server, loaders, routes, middleware, and orchestration utils. |
 | [front-end/modules/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/) | Feature modules and their nested plugins. |
 | [front-end/migrations/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/migrations/) | Schema migrations applied to the main database. |
@@ -114,5 +114,5 @@ flowchart TB
 | [docker-compose.yml](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/docker-compose.yml) | The deployment stack. |
 | [docs/](../index.md) | You are here. |
 
-Continue to **[02 · Architecture](02-architecture.md)** for how these pieces
+Continue to **[02 – Architecture](02-architecture.md)** for how these pieces
 fit together at runtime.

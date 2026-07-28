@@ -1,4 +1,4 @@
-# 08 · Auth & Security
+# 08 – Auth & Security
 
 This doc covers how CyberCore authenticates users, enforces roles, does MFA, and
 the layered defenses around the app (rate limiting, signed URLs, CSP, the lane
@@ -6,16 +6,16 @@ bootstrap trust model).
 
 ## Authentication: JWT + session
 
-CyberCore uses **JWTs** as the primary credential, with an **express-session**
+CyberCore uses JWTs as the primary credential, with an express-session
 (Redis-backed) layer for server-side session state.
 
-- A JWT is accepted from **either** the `Authorization: Bearer <token>` header
-  **or** a `token` cookie ([middleware/auth.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/middleware/auth.js)).
+- A JWT is accepted from *either* the `Authorization: Bearer <token>` header
+  *or* a `token` cookie ([middleware/auth.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/middleware/auth.js)).
   The header wins if both are present.
 - The token payload carries `sub` (user id), `email`, and `role`. On verify,
   those become `req.user = { userId, email, role }`.
 - `JWT_SECRET` signs and verifies tokens. If it's unset the server generates a
-  random one at boot and **all tokens invalidate on restart** — always set it in
+  random one at boot and all tokens invalidate on restart – always set it in
   production ([server.js:94](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L94)).
 - Sessions are stored in Redis via `connect-redis`; the cookie is `httpOnly`,
   `sameSite=lax`, and `secure` when `COOKIE_SECURE=true` (set this behind HTTPS).
@@ -29,20 +29,20 @@ CyberCore uses **JWTs** as the primary credential, with an **express-session**
 | `authenticateToken` (alias `authenticate`) | Standard: require a valid full-session JWT (header or cookie). |
 | `requireRole(...roles)` | Gate a route to specific roles; returns 403 otherwise. |
 | `optionalAuth` | Attach `req.user` if a token is present, but never fail. |
-| `authenticateStage(stage)` | Accept **only** a short-lived stage token (`stage: 'mfa'` or `'enroll'`), header-only — used mid-login. Never accepted as a full session. |
-| `authenticateEnrollOrSession` | Accept a full session **or** an `enroll` stage token — lets MFA setup serve both logged-in and forced-enrollment users. |
+| `authenticateStage(stage)` | Accept only a short-lived stage token (`stage: 'mfa'` or `'enroll'`), header-only – used mid-login. Never accepted as a full session. |
+| `authenticateEnrollOrSession` | Accept a full session *or* an `enroll` stage token – lets MFA setup serve both logged-in and forced-enrollment users. |
 
 ## Roles
 
-Three effective roles flow through the system: **admin**, **instructor**, and a
-regular **user** (the code's default fallback is `student`). Admin is the
-privileged tier — nearly all `/api/admin/*` routes are gated with
+Three effective roles flow through the system: admin, instructor, and a
+regular user (the code's default fallback is `student`). Admin is the
+privileged tier – nearly all `/api/admin/*` routes are gated with
 `requireRole('admin')`, and admins are exempt from the general rate limiter.
 Instructor unlocks teaching surfaces (CLE dashboards, CiaB instructor tools, some
 subnav items marked `roles: ["instructor","admin"]`).
 
 > Course/challenge access checks should go through the shared, admin-aware
-> helpers rather than raw `instructor_id` comparisons — an admin must be able to
+> helpers rather than raw `instructor_id` comparisons – an admin must be able to
 > manage any course. (See the CLE access-control helper.)
 
 ## Login flow with MFA
@@ -85,13 +85,13 @@ idempotently at boot (`ensureMfaColumns()` in `server.js`).
 Three limiters, applied in `server.js` (full table in
 [02-architecture.md](02-architecture.md)):
 
-- **General** (`/api/*`) — high cap (default 5000/15 min), keyed by user id (or
-  IP). **Skips admins** and high-frequency read endpoints (`/api/auth/me`,
+- **General** (`/api/*`) – high cap (default 5000/15 min), keyed by user id (or
+  IP). Skips admins and high-frequency read endpoints (`/api/auth/me`,
   `*/status` polls) so a normal session doesn't exhaust its own bucket.
-- **Auth** (`/api/auth/login`, `/register`) — tight (5/15 min), keyed by
-  **login email** (falling back to IP) so one attacker on a shared NAT can't lock
+- **Auth** (`/api/auth/login`, `/register`) – tight (5/15 min), keyed by
+  login email (falling back to IP) so one attacker on a shared NAT can't lock
   out everyone else.
-- **Webhook** (`/api/webhook`) — 10/min by IP.
+- **Webhook** (`/api/webhook`) – 10/min by IP.
 
 The `trust proxy` setting is essential here: without it every client collapses
 into the proxy's single IP bucket. It also underpins the safe use of
@@ -107,12 +107,12 @@ URLs** ([utils/signed-url.js](https://github.com/Saguaros-CyberHub/CyberCore/blo
   handler verifies the signature and expiry before serving
   ([server.js:311](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L311)).
 - Keyed by `VULN_ASSETS_SECRET`. In production the app refuses to sign with the
-  dev fallback — set it (`openssl rand -hex 32`).
+  dev fallback – set it (`openssl rand -hex 32`).
 
 ## Lane bootstrap trust model
 
 The one unauthenticated endpoint, `GET /api/lane-bootstrap`, is gated by
-**source IP + one-shot token + hostname secret** rather than a bearer token,
+source IP + one-shot token + hostname secret rather than a bearer token,
 because a freshly-cloned gateway has no credentials yet. The full rationale is in
 [05-lanes-and-provisioning.md](05-lanes-and-provisioning.md) and the header of
 [lane-bootstrap.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/lane-bootstrap.js). Key point: the
@@ -124,14 +124,14 @@ forged `X-Forwarded-For` from untrusted hops.
 `helmet` sets security headers with a tuned CSP ([server.js:142](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L142)):
 
 - `default-src 'self'`; scripts/styles allow `'unsafe-inline'` (and scripts
-  `'unsafe-eval'`) — a pragmatic concession to the inline-heavy hub pages.
-- `frame-src` is `'self'` plus, when configured, the Guacamole origin — this is
+  `'unsafe-eval'`) – a pragmatic concession to the inline-heavy hub pages.
+- `frame-src` is `'self'` plus, when configured, the Guacamole origin – this is
   what allows the console iframe. Same-origin `/guac` proxying needs no addition.
 - `img-src` allows `data:` and `blob:` for generated/inline images.
 
 ## Secrets checklist (production)
 
-Set all of these — several have insecure dev fallbacks that log warnings:
+Set all of these – several have insecure dev fallbacks that log warnings:
 
 | Env var | Purpose |
 |---------|---------|
@@ -143,4 +143,4 @@ Set all of these — several have insecure dev fallbacks that log warnings:
 | `PROXMOX_TOKEN_SECRET` | Proxmox API access. |
 | `COOKIE_SECURE=true` | Required once traffic is HTTPS. |
 
-Continue to **[09 · Deployment & Ops](09-deployment-and-ops.md)**.
+Continue to **[09 – Deployment & Ops](09-deployment-and-ops.md)**.

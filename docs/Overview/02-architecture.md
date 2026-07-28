@@ -1,4 +1,4 @@
-# 02 · Architecture
+# 02 – Architecture
 
 This doc explains how CyberCore is put together at runtime: the components, how
 the process boots, and the path a request takes through it.
@@ -53,20 +53,20 @@ flowchart LR
 
 ### The layers
 
-- **Middleware chain** — cross-cutting concerns applied to every request
+- **Middleware chain** – cross-cutting concerns applied to every request
   (logging, security headers, CORS, rate limiting, body parsing, sessions).
   Order matters; see the request lifecycle below.
-- **Core routes** ([src/routes/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/routes/)) — auth, admin,
+- **Core routes** ([src/routes/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/routes/)) – auth, admin,
   lab templates, modules, workstations, lane bootstrap, and Guacamole sessions.
   Wired explicitly in `server.js`.
 - **Module & plugin routes** ([src/module-loader.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/module-loader.js))
-  — discovered and mounted at boot from `manifest.json` files. Covered in
+  – discovered and mounted at boot from `manifest.json` files. Covered in
   [04-modules-and-plugins.md](04-modules-and-plugins.md).
-- **Orchestration utils** ([src/utils/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/utils/)) — the code
+- **Orchestration utils** ([src/utils/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/utils/)) – the code
   that actually drives infrastructure. Each has a single responsibility (talk to
   Proxmox, carve SDN networks, mint Tailscale keys, register Guacamole
   connections, pick a node, deploy lanes in batches).
-- **Data access** — thin pooled-`pg` wrappers, one per database (see
+- **Data access** – thin pooled-`pg` wrappers, one per database (see
   [03-data-model.md](03-data-model.md)), plus a Redis client for sessions and
   caching.
 
@@ -74,7 +74,7 @@ flowchart LR
 
 `server.js` runs top-to-bottom, then calls `start()`. The important part is that
 **modules and plugins load *after* the middleware and core routes are wired, but
-*before* the server starts listening** — so a module can register its routes and
+*before* the server starts listening** – so a module can register its routes and
 provision its own database before the first request arrives.
 
 ```mermaid
@@ -113,7 +113,7 @@ sequenceDiagram
 A few boot behaviors worth knowing:
 
 - **Secrets are self-healing but ephemeral.** If `JWT_SECRET` / `SESSION_SECRET`
-  are unset, the server generates random ones and logs a warning — usable for
+  are unset, the server generates random ones and logs a warning – usable for
   dev, but every restart invalidates all tokens/sessions. Always set them in
   production. ([server.js:94](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js#L94))
 - **Idempotent schema top-ups.** `config/postgres/*` init scripts only run on a
@@ -123,7 +123,7 @@ A few boot behaviors worth knowing:
   migration runner.
 - **Template node reconciliation.** `syncVmTemplateNodes()` queries the live
   Proxmox cluster and corrects the `node` column in `cybercore_template_catalog`
-  when a template has been migrated between nodes — so clone operations target
+  when a template has been migrated between nodes – so clone operations target
   the right host.
 - **Module loading is non-fatal.** If a module throws during load, the error is
   logged and the server still starts. A broken module degrades that feature
@@ -132,7 +132,7 @@ A few boot behaviors worth knowing:
 ## Request lifecycle
 
 Every request passes through the middleware chain in this order. The order is
-deliberate — for example, `cookie-parser` runs *before* the rate limiter so the
+deliberate – for example, `cookie-parser` runs *before* the rate limiter so the
 limiter can read the JWT cookie and skip admins.
 
 ```mermaid
@@ -197,8 +197,8 @@ flowchart LR
   H --> DB["cybercore-db<br/>write cybercore_lane + vm_instance rows"]
 ```
 
-The full deploy sequence — including subnet schemes and gateway bootstrapping —
+The full deploy sequence – including subnet schemes and gateway bootstrapping —
 is documented in [05-lanes-and-provisioning.md](05-lanes-and-provisioning.md)
 and [06-networking.md](06-networking.md).
 
-Continue to **[03 · Data Model](03-data-model.md)**.
+Continue to **[03 – Data Model](03-data-model.md)**.

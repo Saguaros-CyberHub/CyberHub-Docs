@@ -13,7 +13,5 @@ markdown_extensions:
   - admonition
 
 plugins:
-  # Declaring `plugins` replaces the defaults, so `search` must be listed
-  # explicitly to keep site search working.
   - search
   - mermaid2

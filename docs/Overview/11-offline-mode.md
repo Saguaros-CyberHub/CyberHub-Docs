@@ -1,4 +1,4 @@
-# CyberHub — Offline / LAN Mode
+# 11 – Offline / LAN Mode
 
 By default CyberHub uses Caddy to serve over HTTPS with an automatic Let's Encrypt certificate. This requires a public domain name and ports 80 and 443 reachable from the internet.
 
@@ -6,7 +6,7 @@ If you want to run CyberHub on a local network or air-gapped machine without tou
 
 ---
 
-## Option A — LAN / Lab mode (HTTP, accessible on your local network)
+## Option A – LAN / Lab mode (HTTP, accessible on your local network)
 
 Use this when the machine running CyberHub is accessible to other devices on your network, but you don't want HTTPS or a public domain.
 
@@ -16,13 +16,13 @@ Use this when the machine running CyberHub is accessible to other devices on you
 CYBERHUB_HOST=:80
 ```
 
-**2. In `docker-compose.yml` — the Caddy service ports are already `0.0.0.0`, so no change needed.**
+**2. In `docker-compose.yml` – the Caddy service ports are already `0.0.0.0`, so no change needed.**
 
-Caddy sees `:80` as a bare port with no hostname — it skips HTTPS entirely and serves plain HTTP. Users on your network reach CyberHub at `http://<host-ip>`.
+Caddy sees `:80` as a bare port with no hostname – it skips HTTPS entirely and serves plain HTTP. Users on your network reach CyberHub at `http://<host-ip>`.
 
 ---
 
-## Option B — Localhost only (single machine, no network exposure)
+## Option B – Localhost only (single machine, no network exposure)
 
 Use this when CyberHub is for local development or a single-user machine.
 
@@ -32,7 +32,7 @@ Use this when CyberHub is for local development or a single-user machine.
 CYBERHUB_HOST=localhost
 ```
 
-**2. In `docker-compose.yml` — change the Caddy ports to loopback only:**
+**2. In `docker-compose.yml` – change the Caddy ports to loopback only:**
 
 ```yaml
   caddy:
@@ -54,7 +54,7 @@ Access CyberHub at `http://localhost`.
 CYBERHUB_HOST=yourdomain.example.edu
 ```
 
-**2. In `docker-compose.yml` — restore Caddy ports to `0.0.0.0`:**
+**2. In `docker-compose.yml` – restore Caddy ports to `0.0.0.0`:**
 
 ```yaml
   caddy:
@@ -72,6 +72,6 @@ Caddy will automatically obtain and renew a Let's Encrypt certificate for your d
 
 ## Notes
 
-- The CyberHub app (port 3000) and Guacamole (port 8080) are never exposed directly — all traffic goes through Caddy regardless of mode.
+- The CyberHub app (port 3000) and Guacamole (port 8080) are never exposed directly – all traffic goes through Caddy regardless of mode.
 - The Guacamole default admin credentials are `guacadmin` / `guacadmin`. Change the password immediately after first login via the Guacamole admin panel at `/guacamole/`.
 - Port 3000 is bound to `127.0.0.1` for local debugging only and is not part of normal user traffic.

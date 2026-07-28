@@ -1,6 +1,6 @@
-# 04 · Modules & Plugins
+# 04 – Modules & Plugins
 
-CyberCore's features are not hard-wired into `server.js`. They're **discovered
+CyberCore's features are not hard-wired into `server.js`. They're discovered
 from the filesystem at boot** and mounted dynamically. This is what makes the
 platform extensible: drop a directory with a `manifest.json` into `modules/` and
 it becomes part of the app.
@@ -12,20 +12,20 @@ it becomes part of the app.
 | Lives in | `front-end/modules/<key>/` | `front-end/modules/<module>/plugins/<key>/` |
 | Manifest | `manifest.json` | `manifest.json` |
 | `category` | `module` | `plugin` |
-| `parent_module` | — | the module it nests under |
+| `parent_module` | – | the module it nests under |
 | Own database? | rarely | commonly (`clinic_db`, `cle_db`) |
 | Example | `crucible`, `cyberlabs`, `forge` | `ciab`, `cle` (both under `crucible`) |
 
-A **module** is a top-level feature area. A **plugin** is a feature that belongs
+A module is a top-level feature area. A plugin is a feature that belongs
 to a module and is namespaced beneath it. Both are loaded by the same code and
-share the same manifest shape — a plugin is really just a module with a
+share the same manifest shape – a plugin is really just a module with a
 `parent_module` and (usually) its own database.
 
-> **Heads-up — one loader is live, one is dormant.**
+> **Heads-up – one loader is live, one is dormant.**
 > [src/module-loader.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/module-loader.js) is the real loader;
 > `server.js` calls `moduleLoader.loadAll(app)`. There is a second file,
 > `src/plugin-loader.js`, that scans a top-level `plugins/` directory for
-> `plugin.json` files — `server.js` **never requires or invokes it**, so it does
+> `plugin.json` files – `server.js` **never requires or invokes it**, so it does
 > nothing today (even though `docker-compose.yml` still mounts an empty
 > `front-end/plugins` volume). Treat it as legacy; prefer deleting it. If you
 > copy a manifest from there you'll get subtly wrong field names
@@ -79,17 +79,17 @@ every field the loader reads:
 
 ### Field notes
 
-- **`routes[].mountPath`** — the Express mount prefix. A router mounted at `/`
+- **`routes[].mountPath`** – the Express mount prefix. A router mounted at `/`
   that defines `/api/crucible/events` resolves to exactly that path; a router
   mounted at `/crucible` that defines `/dashboard` resolves to
-  `/crucible/dashboard`. Both patterns are used in the codebase — check the
+  `/crucible/dashboard`. Both patterns are used in the codebase – check the
   router file to see which the paths assume.
-- **`database`** — only meaningful for things that own data. When present, the
+- **`database`** – only meaningful for things that own data. When present, the
   loader `CREATE DATABASE`s it (outside a transaction) if missing, runs the
   migrations, and injects a `pg` pool into the module's own `utils/db.js` via
   its exported `setPool()`. That's how `query()` inside a plugin talks to the
   right database.
-- **`subnav.items[].roles`** — optional; restricts a nav entry to certain roles
+- **`subnav.items[].roles`** – optional; restricts a nav entry to certain roles
   (e.g. instructor/admin-only links). Absence means everyone sees it.
 
 ## What the loader does (per module)
@@ -132,7 +132,7 @@ continues, so a broken feature won't stop the server from booting.
 ## How the hub finds features at runtime
 
 The loader writes every module/plugin into `cybercore_module`. The hub UI and
-`/api/modules` read from that table, so the navigation is data-driven — no
+`/api/modules` read from that table, so the navigation is data-driven – no
 front-end code change is needed to surface a new module. The in-memory `subnav`
 registry supplies the per-module sidebar sections.
 
@@ -194,7 +194,7 @@ storage you add a `database` block plus a `utils/db.js` that exposes
   core and other plugins.
 - **Write idempotent migrations** (`CREATE TABLE IF NOT EXISTS`, `ADD COLUMN IF
   NOT EXISTS`). The loader re-runs the whole migrations directory every boot and
-  only logs failures — it does not track which migrations have already applied.
+  only logs failures – it does not track which migrations have already applied.
 - **Prefix your tables** with your key (`cle_*`) so the database stays legible.
 
-Continue to **[05 · Lanes & Provisioning](05-lanes-and-provisioning.md)**.
+Continue to **[05 – Lanes & Provisioning](05-lanes-and-provisioning.md)**.

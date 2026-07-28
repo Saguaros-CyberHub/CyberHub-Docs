@@ -15,7 +15,7 @@ the doc.
 ## Getting started
 
 - [Overview](Overview/01-overview.md) – Overview of how the CyberHub works.
-- [How to Setup](Setup/Quick Start.md) – set up CyberHub locally.
+- [How to Setup](Setup/Quickstart Guide.md) – set up CyberHub locally.
 
 ## Reading order
 

@@ -1,11 +1,11 @@
-# 07 · Crucible & Challenges
+# 07 – Crucible & Challenges
 
-The Crucible is the CTF-style range module — the flagship consumer of the lane
-system. This doc explains its two distinct content types (**challenges** vs.
-**events**), how the dashboard surfaces them, and how **attachable** challenges
+The Crucible is the CTF-style range module – the flagship consumer of the lane
+system. This doc explains its two distinct content types (challenges vs.
+events), how the dashboard surfaces them, and how attachable challenges
 work.
 
-## Challenges vs. events — the core distinction
+## Challenges vs. events – the core distinction
 
 These are two different tables with two different purposes. Conflating them is
 the most common source of confusion.
@@ -13,10 +13,10 @@ the most common source of confusion.
 | | **Challenge** | **Event** |
 |---|---|---|
 | Table | `crucible_challenge` | `cybercore_event` |
-| Is | A reusable, deployable **scenario definition** | A scheduled, human-run **happening** |
+| Is | A reusable, deployable scenario definition | A scheduled, human-run happening |
 | Analogy | A level you can play any time | A tournament with a start/end time |
 | Examples | "CyberSaguaros SSRF", a GOAD lab, a single vuln box | A live Friday-night CTF, a KotH match, a red-vs-blue session |
-| Deployed as | one or more **lanes** | an event with participants and **scores** |
+| Deployed as | one or more lanes | an event with participants and scores |
 | Key columns | `challenge_type`, `difficulty`, `subnet_scheme`, `spec` | `event_type`, `starts_at`, `ends_at`, `is_public`, `status` |
 
 **Rule of thumb:** the reusable catalog of things you *can* run lives in
@@ -58,7 +58,7 @@ flowchart TB
   BYO --> EV
 ```
 
-The three **challenge-backed** tabs map to `challenge_type` values:
+The three challenge-backed tabs map to `challenge_type` values:
 
 | Tab | Reads | `challenge_type` filter |
 |-----|-------|-------------------------|
@@ -111,7 +111,7 @@ know what to clone. Common fields:
 
 ## Attachable challenges
 
-Some challenges aren't standalone lanes — they're **add-ons** grafted onto a
+Some challenges aren't standalone lanes – they're add-ons grafted onto a
 running lane at runtime (the "attached module" mechanism from
 [05](05-lanes-and-provisioning.md)). CyberSaguaros is the canonical example.
 
@@ -130,10 +130,10 @@ flowchart LR
   VM(s) into a free attached-module slot on the lane's VXLAN
   (`800000 + slot*10000 + vxlan_id`) and adds DHCP reservations on the gateway.
 - Detach: `DELETE /api/admin/lanes/:laneId/modules/:moduleInstanceId`, or the
-  admin UI **Modules** button. The base lane is untouched.
+  admin UI Modules button. The base lane is untouched.
 
-The full worked example — including the deliberately-vulnerable app, the seed
-migration, and the bake script — is the CyberSaguaros challenge in
+The full worked example – including the deliberately-vulnerable app, the seed
+migration, and the bake script – is the CyberSaguaros challenge in
 [challenges/cybersaguaros-ssrf/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/challenges/cybersaguaros-ssrf/) and its
 [README](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/challenges/cybersaguaros-ssrf/README.md).
 
@@ -141,9 +141,9 @@ migration, and the bake script — is the CyberSaguaros challenge in
 
 1. **Build the VM template** on Proxmox (there's often a `bake-*.sh` script in
    [front-end/scripts/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/scripts/)) and note its VMID.
-2. **Register it in the catalog** — add a `cybercore_template_catalog` row (or
+2. **Register it in the catalog** – add a `cybercore_template_catalog` row (or
    let a bake script do it) so node reconciliation and resolvers can find it.
-3. **Seed the `crucible_challenge` row** via a migration — set
+3. **Seed the `crucible_challenge` row** via a migration – set
    `challenge_key`, `challenge_type`, `difficulty`, `subnet_scheme`, `module_key`,
    `spec`, and `status='active'`. See
    [020_seed_cybersaguaros_module.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/migrations/020_seed_cybersaguaros_module.sql)
@@ -152,4 +152,4 @@ migration, and the bake script — is the CyberSaguaros challenge in
    Vulnerable Boxes automatically; attachable ones show in the admin lane
    **Modules** flow.
 
-Continue to **[08 · Auth & Security](08-auth-and-security.md)**.
+Continue to **[08 – Auth & Security](08-auth-and-security.md)**.

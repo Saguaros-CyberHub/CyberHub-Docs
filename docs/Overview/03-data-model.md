@@ -1,13 +1,13 @@
-# 03 · Data Model
+# 03 – Data Model
 
-CyberCore persists everything durable in **PostgreSQL** and uses **Redis** only
+CyberCore persists everything durable in PostgreSQL and uses Redis only
 for ephemeral state (sessions, caches). This doc covers the databases, the core
 entity relationships, and a per-table reference.
 
 ## The databases
 
-There is not one database — there are several, each reached through its own
-connection pool. Keeping them separate is deliberate: a plugin owns its data and
+There are several databases, each reached through its own
+connection pool. Keeping them separate is deliberate; a plugin owns its data and
 can't accidentally reach into the control plane's tables.
 
 | Database | Default name | Pool / accessor | Owned by | Holds |
@@ -16,25 +16,25 @@ can't accidentally reach into the control plane's tables.
 | **Clinic** | `clinic_db` | [db.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/db.js) → `query()` | **CiaB** plugin | Risk-assessment profiles, intakes, generated documents, findings. See [10-plugins.md](10-plugins.md). |
 | **CLE** | `cle_db` | plugin-injected pool | **CLE** plugin | Courses, enrollments, materials, submissions. |
 | **Guacamole** | `guacamole_db` | Guacamole itself + [guacamole-db.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/guacamole-db.js) | Guacamole | Connection definitions and its own users. Managed by the Guacamole containers. |
-| **Redis** | — | [redis.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/redis.js) | control plane | Session store (`connect-redis`) and short-lived caches. |
+| **Redis** | – | [redis.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/redis.js) | control plane | Session store (`connect-redis`) and short-lived caches. |
 
 ### Where the schema comes from
 
-Three different mechanisms create/maintain schema — know which is which:
+Three different mechanisms create/maintain schema – know which is which:
 
-1. **First-boot init — `config/postgres/`.** Scripts like
+1. **First-boot init – `config/postgres/`.** Scripts like
    [001_init_db.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/config/postgres/001_init_db.sql) and
    [modules/crucible.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/config/postgres/modules/crucible.sql) run **once**,
    the first time the Postgres container initializes an empty data volume. This
    is the authoritative starting schema for `cybercore_db`. Re-running requires
    a fresh volume.
-2. **Incremental migrations — `front-end/migrations/`.** Numbered `.sql` files
+2. **Incremental migrations – `front-end/migrations/`.** Numbered `.sql` files
    (e.g. [007_cybercore_tables.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/migrations/007_cybercore_tables.sql),
    [021_subnet_scheme_v3.sql](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/migrations/021_subnet_scheme_v3.sql))
-   that evolve `cybercore_db` after init. **There is no automatic runner** — an
+   that evolve `cybercore_db` after init. **There is no automatic runner** – an
    operator applies them with `psql`. Most are written idempotently
    (`IF NOT EXISTS`).
-3. **Plugin migrations — applied by the loader.** When a plugin manifest
+3. **Plugin migrations – applied by the loader.** When a plugin manifest
    declares a `database`, the module loader creates that database if missing and
    runs the plugin's own migrations directory on boot. This is the *only*
    automatic migration path. See [04-modules-and-plugins.md](04-modules-and-plugins.md).
@@ -83,15 +83,15 @@ erDiagram
 - **Identity & access:** `cybercore_user` + `cybercore_group` (many-to-many via
   `cybercore_user_group`) drive who you are and what you can see. `cybercore_badge`
   / `cybercore_user_badge` track achievements.
-- **The provisioning triangle:** a **module** owns **resources** and **VM
-  templates**; a **resource** of type `vm` has exactly one **vm_instance**;
-  instances are cloned *from* templates. **Allocations** grant a user or group
+- **The provisioning triangle:** a module owns resources and VM
+  templates; a resource of type `vm` has exactly one vm_instance;
+  instances are cloned *from* templates. Allocations grant a user or group
   time-boxed access to a resource.
-- **The runtime unit:** a **lane** belongs to a user, is scoped to a module,
-  and optionally rolls up under an **event**. This is what
+- **The runtime unit:** a lane belongs to a user, is scoped to a module,
+  and optionally rolls up under an event. This is what
   [05-lanes-and-provisioning.md](05-lanes-and-provisioning.md) is all about.
-- **Crucible catalog:** **challenges** (`crucible_challenge`) are the reusable
-  scenario definitions; **events**/`crucible_score`/`crucible_team*` support
+- **Crucible catalog:** challenges (`crucible_challenge`) are the reusable
+  scenario definitions; events/`crucible_score`/`crucible_team*` support
   live, scored competitions. The distinction is covered in
   [07-crucible-challenges.md](07-crucible-challenges.md).
 
@@ -154,11 +154,11 @@ erDiagram
 Plugin schemas are owned by the plugin and detailed in
 [10-plugins.md](10-plugins.md). At a glance:
 
-- **`clinic_db` (CiaB)** — the largest plugin schema: `profiles`, `intakes`,
+- **`clinic_db` (CiaB)** – the largest plugin schema: `profiles`, `intakes`,
   `real_client_intakes`, `risk_assets`/`risk_findings`/`risk_snapshots`,
   `cis_ram_*`, `security_documents`, `generated_documents`, `interview_sessions`,
   `nice_framework_reference`, and more.
-- **`cle_db` (CLE)** — small and focused: `cle_course`, `cle_course_enrollment`,
+- **`cle_db` (CLE)** – small and focused: `cle_course`, `cle_course_enrollment`,
   `cle_course_material`, `cle_student_submission`, `cle_activity_log`.
 
 ---

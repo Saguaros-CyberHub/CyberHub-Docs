@@ -1,7 +1,7 @@
-# 05 · Lanes & Provisioning
+# 05 – Lanes & Provisioning
 
-This is the heart of CyberCore: turning a **challenge** definition into a
-running, isolated **lane** on the Proxmox cluster. If you only read one deep-dive
+This is the heart of CyberCore: turning a challenge definition into a
+running, isolated lane on the Proxmox cluster. If you only read one deep-dive
 doc, make it this one.
 
 ## The lane lifecycle
@@ -34,7 +34,7 @@ Two details that matter operationally:
 
 ## Anatomy of a lane
 
-Every lane has, at minimum, a **gateway** and the challenge's **target VMs**, all
+Every lane has, at minimum, a gateway and the challenge's target VMs, all
 on one private VXLAN network:
 
 ```mermaid
@@ -50,11 +50,11 @@ flowchart LR
   TS["Tailscale tailnet<br/>(v2, optional)"] -.-> GW
 ```
 
-- **Gateway** — an LXC cloned from a lane-gateway template (VMID depends on the
+- **Gateway** – an LXC cloned from a lane-gateway template (VMID depends on the
   subnet scheme; see [06-networking.md](06-networking.md)). It does the routing,
-  DHCP, firewalling, and — for v2/v3 — joins a Tailscale tailnet so the student
+  DHCP, firewalling, and – for v2/v3 – joins a Tailscale tailnet so the student
   can reach the lane remotely.
-- **Targets** — QEMU VMs (or LXCs) cloned from challenge templates. Their VMIDs
+- **Targets** – QEMU VMs (or LXCs) cloned from challenge templates. Their VMIDs
   are `vm_offset + vxlan_id` (default offset `600000`), keeping them
   cluster-unique and deterministically tied to the lane.
 
@@ -110,7 +110,7 @@ sequenceDiagram
 3. **Reserve a VXLAN.** Pick the lowest free `vxlan_id` in the challenge's
    configured block (default `10000–10009`), computed as a set difference
    against in-use lanes.
-4. **Resolve the VNet.** The SDN VNets are **pre-created** per VXLAN (see below),
+4. **Resolve the VNet.** The SDN VNets are pre-created per VXLAN (see below),
    so deploy just finds the VNet whose tag equals `vxlan_id`. For v3 it also
    resolves the paired internal VNet (`vxlan_id + offset`).
 5. **Select a node.** [node-selector.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/node-selector.js)
@@ -121,7 +121,7 @@ sequenceDiagram
    the lane VNet. GOAD and DMZ roles get special multi-NIC / MAC handling (see
    [goad-deploy.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/goad-deploy.js)).
 8. **Clone + wire the gateway.** Clone the gateway LXC to `100000 + vxlan_id`,
-   embedding a random **bootstrap secret** in its hostname
+   embedding a random bootstrap secret in its hostname
    (`…-b<16hex>`), and configure its WAN + LAN interfaces per the subnet scheme.
 9. **Prime bootstrap + Tailscale.** For v2/v3, mint a one-shot Tailscale auth key
    and write a `lane_bootstrap_tokens` row keyed to the gateway's expected WAN IP.
@@ -129,18 +129,18 @@ sequenceDiagram
 
 ### First-boot bootstrap (how the gateway gets its secrets)
 
-The gateway has no credentials when it's born — a chicken/egg problem. It solves
-this by **pulling** its config on first boot from an unauthenticated but gated
+The gateway has no credentials when it's born – a chicken/egg problem. It solves
+this by pulling its config on first boot from an unauthenticated but gated
 endpoint:
 
 - The gateway calls `GET /api/lane-bootstrap`
   ([lane-bootstrap.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/lane-bootstrap.js)).
-- The request is matched to a `lane_bootstrap_tokens` row by **source IP**
+- The request is matched to a `lane_bootstrap_tokens` row by source IP
   (the WAN IP the orchestrator deterministically assigned). Express's
   `trust proxy` config ensures `X-Forwarded-For` can't be spoofed by a
   lab-network attacker.
 - The payload (Tailscale auth key, tags, hostname) is returned and the row is
-  **marked consumed** — it's one-shot. A hostname-embedded random secret adds a
+  **marked consumed** – it's one-shot. A hostname-embedded random secret adds a
   second factor.
 
 This "push a token row, gateway pulls once" pattern keeps secrets out of the
@@ -150,7 +150,7 @@ cloned image and out of any long-lived store.
 
 Instructors deploy to a whole cohort, not one student. That path fans the
 single-lane logic out through [batch-deployer.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/batch-deployer.js),
-a worker pool that provisions **N lanes concurrently** (bounded by
+a worker pool that provisions *N* lanes concurrently (bounded by
 `max_concurrent_lanes` / `max_concurrent_clones` from site config) instead of a
 slow sequential loop. Each worker runs the same clone-and-wire sequence above.
 
@@ -164,14 +164,14 @@ flowchart LR
 
 ## Attached modules (runtime add-ons)
 
-Sometimes you want to graft extra VMs onto an **already-running** lane — e.g. the
+Sometimes you want to graft extra VMs onto an already-running lane – e.g. the
 instructor adds a DVWA box to every student lane in week 3, then removes it in
-week 4, without disturbing the base lane. That's an **attached module**
+week 4, without disturbing the base lane. That's an attached module
 ([attached-modules.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/utils/attached-modules.js)):
 
-- Attached VMs sit on the **same VXLAN** as the base lane, reachable from the
+- Attached VMs sit on the same VXLAN as the base lane, reachable from the
   student's Kali at `<lane_subnet>.<octet>`.
-- VMIDs use a slot scheme: `800000 + slot*10000 + vxlan_id`, giving **10 slots**
+- VMIDs use a slot scheme: `800000 + slot*10000 + vxlan_id`, giving 10 slots
   per lane. A multi-VM module consumes consecutive slots.
 - DHCP reservations are written to a per-instance file on the gateway, so detach
   is a clean single-file delete + `dnsmasq` reload.
@@ -179,7 +179,7 @@ week 4, without disturbing the base lane. That's an **attached module**
 API: `POST /api/admin/lanes/:laneId/modules` to attach,
 `DELETE /api/admin/lanes/:laneId/modules/:moduleInstanceId` to detach
 ([lanes.js:550](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/routes/admin/lanes.js#L550)). This is how the
-CyberSaguaros challenge is delivered — see [07-crucible-challenges.md](07-crucible-challenges.md).
+CyberSaguaros challenge is delivered – see [07-crucible-challenges.md](07-crucible-challenges.md).
 
 ## Teardown
 
@@ -188,5 +188,5 @@ Proxmox, cleans up the Tailscale device (v2/v3), and marks the lane `deleted`.
 Because VXLAN IDs and VMIDs are deterministic functions of `vxlan_id`, teardown
 knows exactly which resources to remove.
 
-Continue to **[06 · Networking](06-networking.md)** for the subnet schemes and
+Continue to **[06 – Networking](06-networking.md)** for the subnet schemes and
 gateway internals referenced throughout this doc.
