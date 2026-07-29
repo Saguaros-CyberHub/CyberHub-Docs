@@ -27,7 +27,7 @@ tracked separately.
 ## The dashboard model
 
 The Crucible dashboard ([modules/crucible/public/pages/dashboard.html](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/public/pages/dashboard.html))
-has a left-hand "Challenge Types" nav. Each tab is sourced from **one** of the
+has a left-hand "Challenge Types" nav. Each tab is sourced from one of the
 two tables:
 
 ```mermaid

@@ -16,8 +16,7 @@ For how plugins are loaded in general, see
 > · database `clinic_db` · mount `/ciab` · API under `/`
 
 **What it is:** an AI-powered cyber risk-assessment training platform. It's
-historically the origin of this codebase (the repo's `package.json` is still
-named `clinic-in-a-box`), and it's the largest plugin by far.
+historically the origin of the front-end, and it's the largest plugin by far.
 
 **What it does:** students act as consultants running a security assessment for a
 simulated (or real) client organization. The plugin generates realistic client
