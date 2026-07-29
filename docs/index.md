@@ -36,6 +36,15 @@ Start at the top and work down. The first three are the foundation; the rest are
 
 Also: [offline-mode.md](Overview/11-offline-mode.md) – running the CyberHub on a LAN or air-gapped machine without public HTTPS.
 
+## Plugin deep-dives
+
+The Overview covers the platform. Each shipped plugin gets its own section:
+
+- [Clinic-in-a-Box](Plugins/Clinic-in-a-Box/index.md) – AI-powered cyber
+  risk-assessment training. Profiles, intakes, the risk assessment and CIS RAM
+  deliverables, the interview simulator, instructor tooling, and
+  profile-driven lane deployment.
+
 ## Conventions used in these docs
 
 - **Code references** are relative paths, e.g. [src/server.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/src/server.js).

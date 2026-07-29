@@ -24,6 +24,12 @@ profiles, drives a structured intake, produces a risk assessment
 (CIS-RAM, NICE framework), and can deploy a matching vulnerable lab for the
 profile.
 
+> **Deep-dive:** this section is the summary. The full documentation set lives
+> under [Plugins / Clinic-in-a-Box](../Plugins/Clinic-in-a-Box/index.md) –
+> architecture, the AI generation pipeline, intakes, the risk-assessment and
+> CIS RAM deliverables, instructor tooling, lane deployment, the `clinic_db`
+> reference, and a complete API reference.
+
 ### Capabilities (by route area)
 
 | Area | Routes | What it covers |
