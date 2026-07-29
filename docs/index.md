@@ -40,7 +40,7 @@ Also: [offline-mode.md](Overview/11-offline-mode.md) – running the CyberHub on
 
 The Overview covers the platform. Each shipped plugin gets its own section:
 
-- [Clinic-in-a-Box](Plugins/Clinic-in-a-Box/index.md) – AI-powered cyber
+- [Clinic-in-a-Box](Official Plugins/Clinic-in-a-Box/index.md) – AI-powered cyber
   risk-assessment training. Profiles, intakes, the risk assessment and CIS RAM
   deliverables, the interview simulator, instructor tooling, and
   profile-driven lane deployment.

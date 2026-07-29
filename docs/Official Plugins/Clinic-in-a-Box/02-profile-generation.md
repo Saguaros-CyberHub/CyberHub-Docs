@@ -158,9 +158,27 @@ A successful run produces, in order:
    assessment has data on first open.
 5. **Three `generated_documents` rows** – nmap, nessus and zap scan output,
    generated deterministically (see below).
+6. **A sixth `generated_documents` row of type `policies`** – written twice:
+   once up front with `metadata.status = 'generating'`, then again with the
+   finished set.
 
 Steps 4 and 5 are best-effort: a failure logs a warning and leaves the profile
 intact.
+
+Step 6 is different. Policy generation is 3–6 real Claude calls and can take a
+minute or more, so it runs in a fire-and-forget async block that
+`generateProfile()` deliberately does not await. The function returns as soon
+as the row is inserted, and policies land shortly after. The placeholder row is
+written before the first Claude call so a student who opens Policies mid-run
+sees an accurate "still generating" state rather than an empty result that
+invites a duplicate manual generation. Terminal states are
+`metadata.status` of `complete`, `none` (nothing applicable for this profile),
+or `failed`.
+
+!!! note "Consequence for tests and cost accounting"
+    A single profile generation fires more than the four branch calls. Anything
+    counting LLM calls or estimating spend has to account for the background
+    policy batch as well.
 
 ## Scan documents are not AI-generated
 
@@ -228,7 +246,7 @@ Once a profile exists, three more generators can run against it:
 
 | Artifact | Module | LLM? | Trigger |
 |---|---|---|---|
-| Policy documents | [ai/policy/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/ai/policy/) | yes (parallel fan-out, shared cached system prompt) | `POST /api/profiles/:id/policies/generate` |
+| Policy documents | [ai/policy/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/ai/policy/) | yes (parallel fan-out, shared cached system prompt) | automatic in the background at generation; `POST /api/profiles/:id/policies/generate` to re-run |
 | Scan documents | [ai/scan-documents/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/ai/scan-documents/) | no | auto at generation; `POST /api/instructor/generate-documents` |
 | Answer keys (Parts 1–8) | [ai/examples/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/ai/examples/) | yes | `POST /api/instructor/generate-examples` |
 | Vulnerable web app | [ai/vuln-app/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/modules/crucible/plugins/ciab/ai/vuln-app/) | yes (3 stages) | first lane deploy ([08](08-lane-deployment.md)) |
