@@ -1,4 +1,4 @@
-# 08 – Lane Deployment
+# 3.1.8 Lane Deployment
 
 The bridge from CiaB into the core platform: an admin turns one profile into
 N independent Proxmox lanes, each running the profile's servers with a

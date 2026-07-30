@@ -1,4 +1,4 @@
-# 01 – Architecture
+# 3.1.1 Architecture
 
 How the plugin is wired into CyberCore: loading, routing, auth, data access,
 and the on-disk layout. For the general loader mechanics see

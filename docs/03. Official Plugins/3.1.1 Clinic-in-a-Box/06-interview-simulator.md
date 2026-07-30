@@ -1,4 +1,4 @@
-# 06 – Interview Simulator
+# 3.1.6 Interview Simulator
 
 Stakeholder elicitation is the skill the rest of the engagement depends on, and
 it's the one a static profile document can't teach. The interview simulator

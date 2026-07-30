@@ -1,4 +1,4 @@
-# 09 – Data Model
+# 3.1.9 Data Model
 
 Everything here lives in `clinic_db`, provisioned by the module loader from
 the plugin's `database` manifest block and migrated from

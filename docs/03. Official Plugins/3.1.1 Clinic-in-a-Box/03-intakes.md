@@ -1,4 +1,4 @@
-# 03 – Intakes
+# 3.1.3 Intakes
 
 The intake is the structured questionnaire that captures what an organization
 actually has: network, endpoints, email, access control, data handling,
