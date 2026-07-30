@@ -1,4 +1,4 @@
-# CyberHub Quickstart!
+# 2.1 Quickstart
 
 Install it quickly!
 

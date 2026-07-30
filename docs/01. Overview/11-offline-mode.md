@@ -1,4 +1,4 @@
-# 11 – Offline / LAN Mode
+# 1.11 Offline / LAN Mode
 
 By default CyberHub uses Caddy to serve over HTTPS with an automatic Let's Encrypt certificate. This requires a public domain name and ports 80 and 443 reachable from the internet.
 

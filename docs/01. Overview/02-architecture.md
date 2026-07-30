@@ -1,4 +1,4 @@
-# 02 – Architecture
+# 1.2 Architecture
 
 This doc explains how CyberCore is put together at runtime: the components, how
 the process boots, and the path a request takes through it.

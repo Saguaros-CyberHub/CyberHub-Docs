@@ -1,4 +1,4 @@
-# 07 – Crucible & Challenges
+# 1.7 Crucible & Challenges
 
 The Crucible is the CTF-style range module – the flagship consumer of the lane
 system. This doc explains its two distinct content types (challenges vs.

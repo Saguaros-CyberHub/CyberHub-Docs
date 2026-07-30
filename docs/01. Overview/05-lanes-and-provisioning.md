@@ -1,4 +1,4 @@
-# 05 – Lanes & Provisioning
+# 1.5 Lanes & Provisioning
 
 This is the heart of CyberCore: turning a challenge definition into a
 running, isolated lane on the Proxmox cluster. If you only read one deep-dive

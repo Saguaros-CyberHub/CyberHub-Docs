@@ -1,4 +1,4 @@
-# 08 – Auth & Security
+# 1.8 Auth & Security
 
 This doc covers how CyberCore authenticates users, enforces roles, does MFA, and
 the layered defenses around the app (rate limiting, signed URLs, CSP, the lane

@@ -1,4 +1,4 @@
-# 09 – Deployment & Ops
+# 1.9 Deployment & Ops
 
 How CyberCore is packaged, configured, and run, plus the operational knobs you'll
 reach for.

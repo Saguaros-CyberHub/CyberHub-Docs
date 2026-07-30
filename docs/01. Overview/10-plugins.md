@@ -1,4 +1,4 @@
-# 10 – Plugins: CiaB & CLE
+# 1.10 Plugins: CiaB & CLE
 
 CyberCore ships two plugins, both nested under the Crucible module. Each owns
 its own database and adds a substantial feature set on top of the core platform.

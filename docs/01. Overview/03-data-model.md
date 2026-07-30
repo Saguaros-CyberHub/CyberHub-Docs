@@ -1,4 +1,4 @@
-# 03 – Data Model
+# 1.3 Data Model
 
 CyberCore persists everything durable in PostgreSQL and uses Redis only
 for ephemeral state (sessions, caches). This doc covers the databases, the core

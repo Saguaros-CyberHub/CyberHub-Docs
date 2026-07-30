@@ -1,4 +1,4 @@
-# 04 – Modules & Plugins
+# 1.4 Modules & Plugins
 
 CyberCore's features are not hard-wired into `server.js`. They're discovered
 from the filesystem at boot** and mounted dynamically. This is what makes the
