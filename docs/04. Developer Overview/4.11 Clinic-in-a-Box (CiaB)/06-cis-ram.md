@@ -1,4 +1,4 @@
-# 4.11.5 CIS RAM Workbook
+# 4.11.6 CIS RAM Workbook
 
 The CIS RAM tab mirrors the published CIS RAM v2.1 IG1 workbook in the
 database, so students fill out the real thing instead of a spreadsheet

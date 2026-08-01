@@ -1,4 +1,4 @@
-# 4.11 CiaB Overview
+# 4.11.1 CiaB Overview
 
 Clinic-in-a-Box is CyberCore's AI-powered cyber risk-assessment training
 platform. Students act as consultants running a security engagement for a

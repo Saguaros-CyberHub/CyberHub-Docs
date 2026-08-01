@@ -1,4 +1,4 @@
-# 4.12 Cyber Learning Environment (CLE)
+# 4.12.1 Cyber Learning Environment (CLE)
 
 The Cyber Learning Environment is the instructor-facing class-management plugin
 — an LMS-lite layer over the range. Instructors create courses, enroll students,

@@ -43,7 +43,7 @@ are subsystem docs you can read on demand.
 | 4.9 | [Deployment & Ops](04. Developer Overview/09-deployment-and-ops.md) | The Docker Compose stack, environment variables, and offline mode. |
 | 4.10 | [Plugins: CiaB & CLE](04. Developer Overview/10-plugins.md) | The two shipped plugins and what they add. |
 | 4.11 | [Clinic-in-a-Box](04. Developer Overview/4.11 Clinic-in-a-Box (CiaB)/01-ciab-overview.md) | Plugin internals: profiles, intakes, the risk assessment and CIS RAM deliverables, the interview simulator, instructor tooling, and profile-driven lane deployment. |
-| 4.12 | [Cyber Learning Environment](04. Developer Overview/4.12 Cyber Learning Environment/index.md) | Plugin internals: courses, rosters, and course-driven lab provisioning. |
+| 4.12 | [Cyber Learning Environment](04. Developer Overview/4.12 Cyber Learning Environment/01-cle-overview.md) | Plugin internals: courses, rosters, and course-driven lab provisioning. |
 
 The last two are the shipped plugins. [4.10](04. Developer Overview/10-plugins.md)
 summarizes both; 4.11 and 4.12 are the full references.

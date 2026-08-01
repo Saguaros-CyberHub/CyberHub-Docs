@@ -1,4 +1,4 @@
-# 4.11.2 Profile Generation
+# 4.11.3 Profile Generation
 
 A profile is a complete fictional client organization: org chart and
 stakeholders, IT environment, network assets and subnets, threat model,

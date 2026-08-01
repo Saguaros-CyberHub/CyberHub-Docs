@@ -1,4 +1,4 @@
-# 4.11.7 Instructor Tools
+# 4.11.8 Instructor Tools
 
 The instructor console at `/ciab/instructor` is backed by
 [routes/instructor.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/plugins/ciab/routes/instructor.js)
