@@ -54,7 +54,7 @@ with its own network and its own copies of the target VMs.
 
 ### Running without a public domain
 
-Already written up separately: see [2.3 Offline / LAN Mode](03-offline-mode.md)
+Already written up separately: see [2.3 Offline / LAN Mode](04-offline-mode.md)
 for LAN and air-gapped operation, and for switching back to public HTTPS.
 
 ### Day-to-day operation

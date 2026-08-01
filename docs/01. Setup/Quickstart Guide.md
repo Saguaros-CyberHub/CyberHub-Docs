@@ -5,7 +5,7 @@ default deployment: the whole stack in Docker Compose behind Caddy, serving
 HTTPS on a public domain.
 
 For what each piece does, see [3.9 Deployment & Ops](../03. Developer Overview/09-deployment-and-ops.md).
-To run without a public domain, see [2.3 Offline / LAN Mode](../02. User and Admin Guides/03-offline-mode.md).
+To run without a public domain, see [2.3 Offline / LAN Mode](../02. User and Admin Guides/04-offline-mode.md).
 
 ## Before you start
 

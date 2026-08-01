@@ -60,5 +60,5 @@ security engagement for a client organization:
 
 ## Related
 
-- [2.2 Admin Guide](02-admin-guide.md) – the instructor side of the same workflows.
+- [2.2 Admin Guide](03-admin-guide.md) – the instructor side of the same workflows.
 - [3.1 Overview](../03. Developer Overview/01-overview.md) – glossary and system map.
