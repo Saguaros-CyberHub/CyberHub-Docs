@@ -1,4 +1,4 @@
-# 1.9 Deployment & Ops
+# 3.9 Deployment & Ops
 
 How CyberCore is packaged, configured, and run, plus the operational knobs you'll
 reach for.
@@ -50,7 +50,7 @@ Key facts:
 - **Caddy is the only front door.** The app (`:3000`) and Guacamole are bound to
   loopback / the internal network – all user traffic goes through Caddy, which
   also auto-provisions Let's Encrypt certs in public mode. See
-  [offline-mode.md](11-offline-mode.md) for LAN/air-gapped operation.
+  [2.3 – Offline / LAN Mode](../02. User and Admin Guides/03-offline-mode.md) for LAN/air-gapped operation.
 - **Postgres hosts every database** in one container: `cybercore_db`,
   `clinic_db`, `cle_db`, and `guacamole_db`.
 - **`depends_on` health gating:** the app waits for Postgres and Redis to be

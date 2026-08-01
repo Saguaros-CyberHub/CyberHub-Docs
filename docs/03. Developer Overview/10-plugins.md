@@ -1,4 +1,4 @@
-# 1.10 Plugins: CiaB & CLE
+# 3.10 Plugins: CiaB & CLE
 
 CyberCore ships two plugins, both nested under the Crucible module. Each owns
 its own database and adds a substantial feature set on top of the core platform.
@@ -24,8 +24,8 @@ profiles, drives a structured intake, produces a risk assessment
 (CIS-RAM, NICE framework), and can deploy a matching vulnerable lab for the
 profile.
 
-> **Deep-dive:** this section is the summary. The full documentation set lives
-> under [Plugins / Clinic-in-a-Box](../02. Official Plugins/3.1.1 Clinic-in-a-Box/index.md) –
+> **Full reference:** this section is the summary. The complete documentation set lives
+> under [Plugins / Clinic-in-a-Box](11. Clinic-in-a-Box/index.md) –
 > architecture, the AI generation pipeline, intakes, the risk-assessment and
 > CIS RAM deliverables, instructor tooling, lane deployment, the `clinic_db`
 > reference, and a complete API reference.

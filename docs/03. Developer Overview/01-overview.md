@@ -1,4 +1,8 @@
-# 1.1 Overview
+# 3.1 Overview
+
+This doc introduces CyberCore: what it is, the one concept the rest of the docs
+assume you know, the vocabulary they use, and where the code lives. Read it
+before the subsystem docs that follow.
 
 ## What CyberCore is
 

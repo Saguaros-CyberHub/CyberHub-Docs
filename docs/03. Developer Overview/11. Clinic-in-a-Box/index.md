@@ -1,14 +1,14 @@
-# Clinic-in-a-Box (CiaB)
+# 3.11 Clinic-in-a-Box (CiaB)
 
 Clinic-in-a-Box is CyberCore's AI-powered cyber risk-assessment training
 platform. Students act as consultants running a security engagement for a
 client organization – either an AI-generated simulated one, or a real
 organization whose intake was uploaded and anonymized.
 
-It is the largest plugin in the platform by a wide margin (~35k lines) and is
-historically the origin of the CyberCore front-end. This section is the
-deep-dive; the one-page summary lives in
-[Overview / 10 – Plugins](../../03. Developer Overview/10-plugins.md).
+It is the largest plugin in the platform (~35k lines) and is historically the
+origin of the CyberCore front-end. This section documents it in full; the
+one-page summary lives in
+[3.10 – Plugins](../10-plugins.md).
 
 ## At a glance
 
@@ -72,16 +72,16 @@ detail that matters constantly when debugging.
 
 | # | Doc | What it covers |
 |---|-----|----------------|
-| 01 | [Architecture](01-architecture.md) | How the plugin loads, routes, authenticates, and reaches its data. Start here. |
-| 02 | [Profile Generation](02-profile-generation.md) | The AI pipeline that builds a client organization from a handful of knobs. |
-| 03 | [Intakes](03-intakes.md) | The unified intake schema, the two legacy schemas it replaced, and the real-client upload flow. |
-| 04 | [Clinic Risk Assessment](04-risk-assessment.md) | The main student deliverable: risk register, assets, scenarios, quantification, PDF export. |
-| 05 | [CIS RAM Workbook](05-cis-ram.md) | The CIS RAM v2.1 IG1 workbook mirrored into the database. |
-| 06 | [Interview Simulator](06-interview-simulator.md) | AI stakeholder role-play. |
-| 07 | [Instructor Tools](07-instructor-tools.md) | Dashboard, assignments, answer keys, scan documents, groups and schedules. |
-| 08 | [Lane Deployment](08-lane-deployment.md) | Turning a profile into N real Proxmox lanes, plus the AI vuln-app pipeline. |
-| 09 | [Data Model](09-data-model.md) | `clinic_db` table reference. |
-| 10 | [API Reference](10-api-reference.md) | Every endpoint, its mount path, and its auth level. |
+| 3.11.1 | [Architecture](01-architecture.md) | How the plugin loads, routes, authenticates, and reaches its data. Start here. |
+| 3.11.2 | [Profile Generation](02-profile-generation.md) | The AI pipeline that builds a client organization from a handful of knobs. |
+| 3.11.3 | [Intakes](03-intakes.md) | The unified intake schema, the two legacy schemas it replaced, and the real-client upload flow. |
+| 3.11.4 | [Clinic Risk Assessment](04-risk-assessment.md) | The main student deliverable: risk register, assets, scenarios, quantification, PDF export. |
+| 3.11.5 | [CIS RAM Workbook](05-cis-ram.md) | The CIS RAM v2.1 IG1 workbook mirrored into the database. |
+| 3.11.6 | [Interview Simulator](06-interview-simulator.md) | AI stakeholder role-play. |
+| 3.11.7 | [Instructor Tools](07-instructor-tools.md) | Dashboard, assignments, answer keys, scan documents, groups and schedules. |
+| 3.11.8 | [Lane Deployment](08-lane-deployment.md) | Turning a profile into N real Proxmox lanes, plus the AI vuln-app pipeline. |
+| 3.11.9 | [Data Model](09-data-model.md) | `clinic_db` table reference. |
+| 3.11.10 | [API Reference](10-api-reference.md) | Every endpoint, its mount path, and its auth level. |
 
 ## Page map
 

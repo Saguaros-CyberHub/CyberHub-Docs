@@ -1,4 +1,12 @@
-# 1.11 Offline / LAN Mode
+# 2.3 Offline / LAN Mode
+
+How to run CyberHub without a public domain or internet access — on a local
+network, or on a fully air-gapped machine.
+
+The [1.1 Quickstart](../01. Setup/Quickstart Guide.md) assumes the default
+public-HTTPS deployment. This page covers the two alternatives and how to switch
+back. For what Caddy and the rest of the stack are doing underneath, see
+[3.9 – Deployment & Ops](../03. Developer Overview/09-deployment-and-ops.md).
 
 By default CyberHub uses Caddy to serve over HTTPS with an automatic Let's Encrypt certificate. This requires a public domain name and ports 80 and 443 reachable from the internet.
 
@@ -75,3 +83,5 @@ Caddy will automatically obtain and renew a Let's Encrypt certificate for your d
 - The CyberHub app (port 3000) and Guacamole (port 8080) are never exposed directly – all traffic goes through Caddy regardless of mode.
 - The Guacamole default admin credentials are `guacadmin` / `guacadmin`. Change the password immediately after first login via the Guacamole admin panel at `/guacamole/`.
 - Port 3000 is bound to `127.0.0.1` for local debugging only and is not part of normal user traffic.
+
+Back to the [index](../index.md).

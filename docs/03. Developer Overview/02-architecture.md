@@ -1,4 +1,4 @@
-# 1.2 Architecture
+# 3.2 Architecture
 
 This doc explains how CyberCore is put together at runtime: the components, how
 the process boots, and the path a request takes through it.
@@ -63,7 +63,7 @@ flowchart LR
   – discovered and mounted at boot from `manifest.json` files. Covered in
   [04-modules-and-plugins.md](04-modules-and-plugins.md).
 - **Orchestration utils** ([src/utils/](https://github.com/Saguaros-CyberHub/CyberCore/tree/main/front-end/src/utils/)) – the code
-  that actually drives infrastructure. Each has a single responsibility (talk to
+  that drives infrastructure. Each has a single responsibility (talk to
   Proxmox, carve SDN networks, mint Tailscale keys, register Guacamole
   connections, pick a node, deploy lanes in batches).
 - **Data access** – thin pooled-`pg` wrappers, one per database (see
@@ -184,7 +184,7 @@ from the `Authorization: Bearer` header or the `token` cookie) and optionally
 
 ## Where infrastructure work happens
 
-Route handlers stay thin; the heavy lifting lives in `src/utils/`. When an admin
+Route handlers stay thin; the infrastructure work lives in `src/utils/`. When an admin
 deploys a lane, the request handler orchestrates a sequence of util calls:
 
 ```mermaid

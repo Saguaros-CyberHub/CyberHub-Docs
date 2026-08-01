@@ -1,4 +1,4 @@
-# 1.4 Modules & Plugins
+# 3.4 Modules & Plugins
 
 CyberCore's features are not hard-wired into `server.js`. They're discovered
 from the filesystem at boot** and mounted dynamically. This is what makes the
@@ -18,7 +18,7 @@ it becomes part of the app.
 
 A module is a top-level feature area. A plugin is a feature that belongs
 to a module and is namespaced beneath it. Both are loaded by the same code and
-share the same manifest shape – a plugin is really just a module with a
+share the same manifest shape – a plugin is a module with a
 `parent_module` and (usually) its own database.
 
 > **Heads-up – one loader is live, one is dormant.**

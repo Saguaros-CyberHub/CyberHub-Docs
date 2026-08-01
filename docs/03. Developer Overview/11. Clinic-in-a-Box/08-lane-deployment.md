@@ -1,4 +1,4 @@
-# 3.1.8 Lane Deployment
+# 3.11.8 Lane Deployment
 
 The bridge from CiaB into the core platform: an admin turns one profile into
 N independent Proxmox lanes, each running the profile's servers with a
@@ -12,8 +12,8 @@ Orchestration:
 [utils/lane-deploy.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/plugins/ciab/utils/lane-deploy.js).
 
 This doc assumes familiarity with
-[Overview / 05 – Lanes & Provisioning](../../03. Developer Overview/05-lanes-and-provisioning.md)
-and [06 – Networking](../../03. Developer Overview/06-networking.md).
+[3.5 – Lanes & Provisioning](../05-lanes-and-provisioning.md)
+and [3.6 – Networking](../06-networking.md).
 
 ## What deploys, and what doesn't
 

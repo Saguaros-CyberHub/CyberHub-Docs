@@ -1,8 +1,8 @@
-# 1.5 Lanes & Provisioning
+# 3.5 Lanes & Provisioning
 
-This is the heart of CyberCore: turning a challenge definition into a
-running, isolated lane on the Proxmox cluster. If you only read one deep-dive
-doc, make it this one.
+This doc covers what CyberCore spends most of its time doing: turning a
+challenge definition into a running, isolated lane on the Proxmox cluster. If
+you read only one subsystem doc, read this one.
 
 ## The lane lifecycle
 

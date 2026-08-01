@@ -1,4 +1,4 @@
-# 1.3 Data Model
+# 3.3 Data Model
 
 CyberCore persists everything durable in PostgreSQL and uses Redis only
 for ephemeral state (sessions, caches). This doc covers the databases, the core
@@ -163,6 +163,8 @@ Plugin schemas are owned by the plugin and detailed in
 
 ---
 
-That's the foundation. The next batch of docs builds on it:
-modules/plugins loading (04), the lane lifecycle (05), networking (06),
-challenges (07), auth (08), and ops (09).
+That's the foundation. The subsystem docs build on it: modules and plugins
+(04), the lane lifecycle (05), networking (06), challenges (07), auth (08),
+and ops (09).
+
+Continue to **[04 – Modules & Plugins](04-modules-and-plugins.md)**.

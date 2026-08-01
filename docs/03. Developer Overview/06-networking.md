@@ -1,4 +1,4 @@
-# 1.6 Networking
+# 3.6 Networking
 
 Every lane is an isolated network. This doc covers how that isolation is built —
 the three subnet schemes, the lane gateway, remote access via

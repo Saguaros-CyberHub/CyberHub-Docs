@@ -1,4 +1,4 @@
-# 3.1.9 Data Model
+# 3.11.9 Data Model
 
 Everything here lives in `clinic_db`, provisioned by the module loader from
 the plugin's `database` manifest block and migrated from
@@ -149,7 +149,7 @@ tables (`intake_form_responses`, `real_client_intakes`).
 `activity_log`, `sessions`, `tags`, `profile_tags`, `favorites`.
 
 `sessions` in `clinic_db` predates unified auth; live authentication is handled
-by CyberCore ([Overview / 08](../../03. Developer Overview/08-auth-and-security.md)).
+by CyberCore ([3.8 – Auth & Security](../08-auth-and-security.md)).
 
 ## Views
 
