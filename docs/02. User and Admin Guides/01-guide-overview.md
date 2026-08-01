@@ -1,4 +1,4 @@
-# 2. User and Admin Guides
+# 2.1 User and Admin Guides
 
 Everything in this section is about **using** a CyberHub that is already
 deployed. If you are standing one up, start at [1.1 Quickstart](../01. Setup/Quickstart Guide.md).
@@ -7,9 +7,9 @@ If you are changing how the platform works, go to
 
 | Guide | Audience | Covers |
 |---|---|---|
-| [2.1 User Guide](01-user-guide.md) | Students and other learners | Signing in, reaching your lab environment, working through a challenge or an assessment. |
-| [2.2 Admin Guide](02-admin-guide.md) | Instructors and admins | Accounts and groups, deploying labs to a class, monitoring and tearing them down, day-to-day operation. |
-| [2.3 Offline / LAN Mode](03-offline-mode.md) | Admins | Running the hub on a local network or an air-gapped machine, without a public domain or HTTPS. |
+| [2.2 User Guide](02-user-guide.md) | Students and other learners | Signing in, reaching your lab environment, working through a challenge or an assessment. |
+| [2.3 Admin Guide](02-admin-guide.md) | Instructors and admins | Accounts and groups, deploying labs to a class, monitoring and tearing them down, day-to-day operation. |
+| [2.4 Offline / LAN Mode](03-offline-mode.md) | Admins | Running the hub on a local network or an air-gapped machine, without a public domain or HTTPS. |
 
 !!! warning "2.1 and 2.2 are not written yet"
     Those two pages are currently outlines. They exist so the structure is in

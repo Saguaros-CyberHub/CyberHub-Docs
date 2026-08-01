@@ -18,7 +18,7 @@ the doc.
 | Section | What it is | Read it when |
 |---------|-----------|--------------|
 | **[1. Setup](01. Setup/Quickstart Guide.md)** | Step-by-step install. | You want a running CyberHub. |
-| **[2. User and Admin Guides](02. User and Admin Guides/index.md)** | How to use the platform once it is deployed. | You are a student, instructor, or admin. |
+| **[2. User and Admin Guides](02. User and Admin Guides/01-guide-overview.md)** | How to use the platform once it is deployed. | You are a student, instructor, or admin. |
 | **[3. Developer Overview](03. Developer Overview/01-overview.md)** | How the platform works and why, including the plugin internals. | You are changing CyberCore itself. |
 
 Most people need sections 1 and 2. Section 3 is for people working on the

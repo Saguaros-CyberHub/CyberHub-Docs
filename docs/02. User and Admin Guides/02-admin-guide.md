@@ -1,4 +1,4 @@
-# 2.2 Admin Guide
+# 2.3 Admin Guide
 
 How to run a deployed CyberHub: manage people, put lab environments in front of
 them, and keep the thing healthy. Written for instructors and admins.
@@ -70,7 +70,7 @@ for LAN and air-gapped operation, and for switching back to public HTTPS.
 
 ## Related
 
-- [2.1 User Guide](01-user-guide.md) – what your students see.
+- [2.1 User Guide](02-user-guide.md) – what your students see.
 - [3.9 Deployment & Ops](../03. Developer Overview/09-deployment-and-ops.md) – the operational reference behind this guide.
 - [3.5 Lanes & Provisioning](../03. Developer Overview/05-lanes-and-provisioning.md) – what actually happens during a deploy.
 - [3.7 Crucible & Challenges](../03. Developer Overview/07-crucible-challenges.md) – challenges, events, and attachable challenges.

@@ -1,4 +1,4 @@
-# 2.3 Offline / LAN Mode
+# 2.4 Offline / LAN Mode
 
 How to run CyberHub without a public domain or internet access — on a local
 network, or on a fully air-gapped machine.

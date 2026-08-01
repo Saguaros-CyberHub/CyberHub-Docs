@@ -1,4 +1,4 @@
-# 2.1 User Guide
+# 2.2 User Guide
 
 How to use the CyberHub as a learner: get in, reach your lab environment, and
 work through what your instructor assigned.
