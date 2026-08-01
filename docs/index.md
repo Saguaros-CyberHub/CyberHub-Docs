@@ -17,13 +17,13 @@ the doc.
 
 | Section | What it is | Read it when |
 |---------|-----------|--------------|
-| **[1. Setup](01. Setup/Quickstart Guide.md)** | Step-by-step install. | You want a running CyberHub. |
-| **[2. User and Admin Guides](02. User and Admin Guides/01-guide-overview.md)** | How to use the platform once it is deployed. | You are a student, instructor, or admin. |
-| **[3. Developer Overview](03. Developer Overview/01-overview.md)** | How the platform works and why, including the plugin internals. | You are changing CyberCore itself. |
+| **[1. Installation](01. Installation/1.1 Quickstart.md)** | Step-by-step install. | You want a running CyberHub. |
+| **[3. User and Admin Guides](03. User and Admin Guides/01-guide-overview.md)** | How to use the platform once it is deployed. | You are a student, instructor, or admin. |
+| **[4. Developer Overview](04. Developer Overview/01-overview.md)** | How the platform works and why, including the plugin internals. | You are changing CyberCore itself. |
 
-Most people need sections 1 and 2. Section 3 is for people working on the
+Most people need sections 1 and 3. Section 4 is for people working on the
 platform's code — it assumes the vocabulary defined in the
-[3.1 Overview glossary](03. Developer Overview/01-overview.md#glossary).
+[4.1 Overview glossary](04. Developer Overview/01-overview.md#glossary).
 
 ## Developer Overview — reading order
 
@@ -32,21 +32,21 @@ are subsystem docs you can read on demand.
 
 | # | Doc | What it covers |
 |---|-----|----------------|
-| 3.1 | [Overview](03. Developer Overview/01-overview.md) | What CyberCore is, the glossary, and the top-level system diagram. **Start here.** |
-| 3.2 | [Architecture](03. Developer Overview/02-architecture.md) | Components, the boot sequence, and the request lifecycle. |
-| 3.3 | [Data Model](03. Developer Overview/03-data-model.md) | The databases, the entity-relationship map, and a key-table reference. |
-| 3.4 | [Modules & Plugins](03. Developer Overview/04-modules-and-plugins.md) | The manifest-driven loader and how to add a module or plugin. |
-| 3.5 | [Lanes & Provisioning](03. Developer Overview/05-lanes-and-provisioning.md) | The lane lifecycle and the Proxmox/SDN deploy sequence. |
-| 3.6 | [Networking](03. Developer Overview/06-networking.md) | Subnet schemes v1/v2/v3, lane gateways, Tailscale, and Guacamole consoles. |
-| 3.7 | [Crucible & Challenges](03. Developer Overview/07-crucible-challenges.md) | The challenge catalog vs. live events, and attachable challenges. |
-| 3.8 | [Auth & Security](03. Developer Overview/08-auth-and-security.md) | JWT/session auth, roles, MFA, rate limiting, and signed URLs. |
-| 3.9 | [Deployment & Ops](03. Developer Overview/09-deployment-and-ops.md) | The Docker Compose stack, environment variables, and offline mode. |
-| 3.10 | [Plugins: CiaB & CLE](03. Developer Overview/10-plugins.md) | The two shipped plugins and what they add. |
-| 3.11 | [Clinic-in-a-Box](03. Developer Overview/11. Clinic-in-a-Box/index.md) | Plugin internals: profiles, intakes, the risk assessment and CIS RAM deliverables, the interview simulator, instructor tooling, and profile-driven lane deployment. |
-| 3.12 | [Cyber Learning Environment](03. Developer Overview/12. Cyber Learning Environment/index.md) | Plugin internals: courses, rosters, and course-driven lab provisioning. |
+| 4.1 | [Overview](04. Developer Overview/01-overview.md) | What CyberCore is, the glossary, and the top-level system diagram. **Start here.** |
+| 4.2 | [Architecture](04. Developer Overview/02-architecture.md) | Components, the boot sequence, and the request lifecycle. |
+| 4.3 | [Data Model](04. Developer Overview/03-data-model.md) | The databases, the entity-relationship map, and a key-table reference. |
+| 4.4 | [Modules & Plugins](04. Developer Overview/04-modules-and-plugins.md) | The manifest-driven loader and how to add a module or plugin. |
+| 4.5 | [Lanes & Provisioning](04. Developer Overview/05-lanes-and-provisioning.md) | The lane lifecycle and the Proxmox/SDN deploy sequence. |
+| 4.6 | [Networking](04. Developer Overview/06-networking.md) | Subnet schemes v1/v2/v3, lane gateways, Tailscale, and Guacamole consoles. |
+| 4.7 | [Crucible & Challenges](04. Developer Overview/07-crucible-challenges.md) | The challenge catalog vs. live events, and attachable challenges. |
+| 4.8 | [Auth & Security](04. Developer Overview/08-auth-and-security.md) | JWT/session auth, roles, MFA, rate limiting, and signed URLs. |
+| 4.9 | [Deployment & Ops](04. Developer Overview/09-deployment-and-ops.md) | The Docker Compose stack, environment variables, and offline mode. |
+| 4.10 | [Plugins: CiaB & CLE](04. Developer Overview/10-plugins.md) | The two shipped plugins and what they add. |
+| 4.11 | [Clinic-in-a-Box](04. Developer Overview/4.11 Clinic-in-a-Box (CiaB)/01-ciab-overview.md) | Plugin internals: profiles, intakes, the risk assessment and CIS RAM deliverables, the interview simulator, instructor tooling, and profile-driven lane deployment. |
+| 4.12 | [Cyber Learning Environment](04. Developer Overview/4.12 Cyber Learning Environment/index.md) | Plugin internals: courses, rosters, and course-driven lab provisioning. |
 
-The last two are the shipped plugins. [3.10](03. Developer Overview/10-plugins.md)
-summarizes both; 3.11 and 3.12 are the full references.
+The last two are the shipped plugins. [4.10](04. Developer Overview/10-plugins.md)
+summarizes both; 4.11 and 4.12 are the full references.
 
 ## Conventions used in these docs
 
