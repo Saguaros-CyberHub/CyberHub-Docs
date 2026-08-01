@@ -25,7 +25,7 @@ profiles, drives a structured intake, produces a risk assessment
 profile.
 
 > **Deep-dive:** this section is the summary. The full documentation set lives
-> under [Plugins / Clinic-in-a-Box](../03. Official Plugins/3.1.1 Clinic-in-a-Box/index.md) –
+> under [Plugins / Clinic-in-a-Box](../02. Official Plugins/3.1.1 Clinic-in-a-Box/index.md) –
 > architecture, the AI generation pipeline, intakes, the risk-assessment and
 > CIS RAM deliverables, instructor tooling, lane deployment, the `clinic_db`
 > reference, and a complete API reference.

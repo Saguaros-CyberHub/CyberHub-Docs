@@ -2,7 +2,7 @@
 
 How the plugin is wired into CyberCore: loading, routing, auth, data access,
 and the on-disk layout. For the general loader mechanics see
-[Overview / 04 – Modules & Plugins](../../01. Overview/04-modules-and-plugins.md).
+[Overview / 04 – Modules & Plugins](../../01. Developer Overview/04-modules-and-plugins.md).
 
 ## Directory layout
 

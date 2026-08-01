@@ -149,7 +149,7 @@ tables (`intake_form_responses`, `real_client_intakes`).
 `activity_log`, `sessions`, `tags`, `profile_tags`, `favorites`.
 
 `sessions` in `clinic_db` predates unified auth; live authentication is handled
-by CyberCore ([Overview / 08](../../01. Overview/08-auth-and-security.md)).
+by CyberCore ([Overview / 08](../../01. Developer Overview/08-auth-and-security.md)).
 
 ## Views
 

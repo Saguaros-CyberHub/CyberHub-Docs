@@ -8,7 +8,7 @@ organization whose intake was uploaded and anonymized.
 It is the largest plugin in the platform by a wide margin (~35k lines) and is
 historically the origin of the CyberCore front-end. This section is the
 deep-dive; the one-page summary lives in
-[Overview / 10 – Plugins](../../01. Overview/10-plugins.md).
+[Overview / 10 – Plugins](../../01. Developer Overview/10-plugins.md).
 
 ## At a glance
 

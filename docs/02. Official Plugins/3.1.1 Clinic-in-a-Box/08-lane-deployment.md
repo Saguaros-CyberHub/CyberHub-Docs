@@ -12,8 +12,8 @@ Orchestration:
 [utils/lane-deploy.js](https://github.com/Saguaros-CyberHub/CyberCore/blob/main/front-end/modules/crucible/plugins/ciab/utils/lane-deploy.js).
 
 This doc assumes familiarity with
-[Overview / 05 – Lanes & Provisioning](../../01. Overview/05-lanes-and-provisioning.md)
-and [06 – Networking](../../01. Overview/06-networking.md).
+[Overview / 05 – Lanes & Provisioning](../../01. Developer Overview/05-lanes-and-provisioning.md)
+and [06 – Networking](../../01. Developer Overview/06-networking.md).
 
 ## What deploys, and what doesn't
 

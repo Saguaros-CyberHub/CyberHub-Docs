@@ -14,8 +14,8 @@ the doc.
 
 ## Getting started
 
-- [Overview](01. Overview/01-overview.md) – Overview of how the CyberHub works.
-- [How to Setup](02. Setup/Quickstart Guide.md) – set up CyberHub locally.
+- [Overview](01. Developer Overview/01-overview.md) – Overview of how the CyberHub works.
+- [How to Setup](01. Setup/Quickstart Guide.md) – set up CyberHub locally.
 
 ## Reading order
 
@@ -23,24 +23,24 @@ Start at the top and work down. The first three are the foundation; the rest are
 
 | # | Doc | What it covers |
 |---|-----|----------------|
-| 01 | [Overview](01. Overview/01-overview.md) | What the CyberCore is, the glossary, and the top-level system diagram. **Start here.** |
-| 02 | [Architecture](01. Overview/02-architecture.md) | Components, the boot sequence, and the request lifecycle. |
-| 03 | [Data Model](01. Overview/03-data-model.md) | The databases, the entity-relationship map, and a key-table reference. |
-| 04 | [Modules & Plugins](01. Overview/04-modules-and-plugins.md) | The manifest-driven loader and how to add a module or plugin. |
-| 05 | [Lanes & Provisioning](01. Overview/05-lanes-and-provisioning.md) | The lane lifecycle and the Proxmox/SDN deploy sequence. |
-| 06 | [Networking](01. Overview/06-networking.md) | Subnet schemes v1/v2/v3, lane gateways, Tailscale, and Guacamole consoles. |
-| 07 | [Crucible & Challenges](01. Overview/07-crucible-challenges.md) | The challenge catalog vs. live events, and attachable challenges. |
-| 08 | [Auth & Security](01. Overview/08-auth-and-security.md) | JWT/session auth, roles, MFA, rate limiting, and signed URLs. |
-| 09 | [Deployment & Ops](01. Overview/09-deployment-and-ops.md) | The Docker Compose stack, environment variables, and offline mode. |
-| 10 | [Plugins: CiaB & CLE](01. Overview/10-plugins.md) | The two shipped plugins and what they add. |
+| 01 | [Overview](01. Developer Overview/01-overview.md) | What the CyberCore is, the glossary, and the top-level system diagram. **Start here.** |
+| 02 | [Architecture](01. Developer Overview/02-architecture.md) | Components, the boot sequence, and the request lifecycle. |
+| 03 | [Data Model](01. Developer Overview/03-data-model.md) | The databases, the entity-relationship map, and a key-table reference. |
+| 04 | [Modules & Plugins](01. Developer Overview/04-modules-and-plugins.md) | The manifest-driven loader and how to add a module or plugin. |
+| 05 | [Lanes & Provisioning](01. Developer Overview/05-lanes-and-provisioning.md) | The lane lifecycle and the Proxmox/SDN deploy sequence. |
+| 06 | [Networking](01. Developer Overview/06-networking.md) | Subnet schemes v1/v2/v3, lane gateways, Tailscale, and Guacamole consoles. |
+| 07 | [Crucible & Challenges](01. Developer Overview/07-crucible-challenges.md) | The challenge catalog vs. live events, and attachable challenges. |
+| 08 | [Auth & Security](01. Developer Overview/08-auth-and-security.md) | JWT/session auth, roles, MFA, rate limiting, and signed URLs. |
+| 09 | [Deployment & Ops](01. Developer Overview/09-deployment-and-ops.md) | The Docker Compose stack, environment variables, and offline mode. |
+| 10 | [Plugins: CiaB & CLE](01. Developer Overview/10-plugins.md) | The two shipped plugins and what they add. |
 
-Also: [offline-mode.md](01. Overview/11-offline-mode.md) – running the CyberHub on a LAN or air-gapped machine without public HTTPS.
+Also: [offline-mode.md](01. Developer Overview/11-offline-mode.md) – running the CyberHub on a LAN or air-gapped machine without public HTTPS.
 
 ## Plugin deep-dives
 
 The Overview covers the platform. Each shipped plugin gets its own section:
 
-- [Clinic-in-a-Box](03. Official Plugins/3.1.1 Clinic-in-a-Box/index.md) – AI-powered cyber
+- [Clinic-in-a-Box](02. Official Plugins/3.1.1 Clinic-in-a-Box/index.md) – AI-powered cyber
   risk-assessment training. Profiles, intakes, the risk assessment and CIS RAM
   deliverables, the interview simulator, instructor tooling, and
   profile-driven lane deployment.
